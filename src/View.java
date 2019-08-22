@@ -34,6 +34,9 @@ public class View {
                            "\n3..." +
                            "\n2..." +
                            "\n1...");
+
+        System.out.println("test");
+
     }
 
 }
