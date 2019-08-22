@@ -1,7 +1,9 @@
+package mvc;
+
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/23/2019
- * Description: Controller for the Application handling all business logic.
+ * Description: mvc.Controller for the Application handling all business logic.
  * @Author Elias Afzalzada
  */
 public class Controller {

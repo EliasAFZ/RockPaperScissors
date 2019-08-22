@@ -1,35 +1,37 @@
+package mvc;
+
 /**
- * Project Name: RockPaperScissorsGame
- * Date: 8/20/2019
+ * Name: RockPaperScissorsGame
+ * Date: 8/23/2019
  * Description:
+ *
  * @Author Elias Afzalzada
  */
-public class Player{
+public class Computer{
 
-    final private String playerName;
-    private int playerHighScore;
+    final private String playerName = "mvc.Computer";
+    private int computerHighScore;
     private float winRate;
     private int numOfWins;
     private int numOfLosses;
 
-    public Player(String _playerName) {
-        playerName = _playerName;
-        playerHighScore = 0;
+    public Computer() {
+        computerHighScore = 0;
         winRate = 0;
-        numOfLosses = 0;
         numOfWins = 0;
+        numOfLosses = 0;
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public int getPlayerHighScore() {
-        return playerHighScore;
+    public int getComputerHighScore() {
+        return computerHighScore;
     }
 
-    public void setPlayerHighScore(int playerHighScore) {
-        this.playerHighScore = playerHighScore;
+    public void setComputerHighScore(int computerHighScore) {
+        this.computerHighScore = computerHighScore;
     }
 
     public float getWinRate() {

@@ -1,9 +1,11 @@
+package mvc;
+
 import java.util.HashMap;
 
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/16/2019
- * Description: State holds the current state of the application
+ * Description: mvc.State holds the current state of the application
  * @Author Elias Afzalzada
  */
 

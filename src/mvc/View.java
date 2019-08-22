@@ -1,9 +1,11 @@
+package mvc;
+
 import java.util.Scanner;
 
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/16/2019
- * Description: View handling displaying the current state.
+ * Description: mvc.View handling displaying the current state.
  * @Author Elias Afzalzada
  */
 
