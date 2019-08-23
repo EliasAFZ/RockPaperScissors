@@ -1,12 +1,13 @@
-package mvc;
+package MVC_UDF;
 
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/20/2019
  * Description:
+ *
  * @Author Elias Afzalzada
  */
-public class Player{
+public class Player {
 
     final private String playerName;
     private int playerHighScore;

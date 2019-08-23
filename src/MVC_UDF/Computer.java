@@ -1,4 +1,4 @@
-package mvc;
+package MVC_UDF;
 
 /**
  * Name: RockPaperScissorsGame
@@ -7,7 +7,7 @@ package mvc;
  *
  * @Author Elias Afzalzada
  */
-public class Computer{
+public class Computer {
 
     final private String playerName = "mvc.Computer";
     private int computerHighScore;
