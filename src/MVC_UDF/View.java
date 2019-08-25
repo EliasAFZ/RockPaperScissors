@@ -28,24 +28,34 @@ public class View {
 
     public void setInitialAppView() {
         welcomeDisplay();
+        continueGameQuestion(null);
+    }
+
+    public void continueGameQuestion(String incorrectResponse){
+        if(incorrectResponse != null){
+            System.out.println(incorrectResponse + " is an invalid response.");
+        }
         System.out.print("Would you like to play?(Yes/No): ");
         String playerResponse = userInput.nextLine();
         cr.startGameResponse(playerResponse);
     }
 
-    public void gameViewRunning(){
-        //Player setup
-        System.out.print("Please enter your gaming handle: ");
+    public void retrievePlayerName(){
+        System.out.print("\nPlease enter your gaming handle: ");
         String playerHandle = userInput.nextLine();
-        System.out.println("Hello there " + playerHandle + ".");
+        System.out.println("Hello there " + playerHandle + "! \n");
         cr.createPlayer(playerHandle);
+    }
+
+    public void gameViewRunning(int currentNumberOfGameObjects){
+        retrievePlayerName();
+        System.out.println("Alright so currently their are " + currentNumberOfGameObjects + " game pieces, they are: " +
+                           "");
 
 
     }
 
-//System.out.println("Alright ready, here we go!" +
-    //"\n3..." +
-    //"\n2..." +
-    //"\n1...");
-
+    public void gameViewEnding() {
+        System.out.println("Thank you for playing!");
+    }
 }

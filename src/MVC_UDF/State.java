@@ -32,16 +32,17 @@ public class State {
         playerMap.put(playerHandle, p1);
     }
 
-    public void startGame(){
-        vw.gameViewRunning();
+    public void gameIsRunning(){
+        vw.gameViewRunning(gamePieceMap.size());
     }
 
-    public void endGame(){
-
+    public void gameIsEnding(){
+        gamePieceMap.clear();
+        vw.gameViewEnding();
     }
 
-    public void incorrectResponse(){
-
+    public void incorrectResponse(String incorrectResponse){
+        vw.continueGameQuestion(incorrectResponse);
     }
 
 }

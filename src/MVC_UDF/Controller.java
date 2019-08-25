@@ -3,7 +3,7 @@ package MVC_UDF;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/23/2019
- * Description: mvc.Controller for the Application handling all business logic.
+ * Description: Controller for the Application handling all business logic.
  *
  * @Author Elias Afzalzada
  */
@@ -17,18 +17,23 @@ public class Controller {
 
     public void startGameResponse(String playerResponse){
         if(playerResponse.equalsIgnoreCase("yes")){
-            st.startGame();
+            gameLoop();
         }
         else if(playerResponse.equalsIgnoreCase("no")){
-            st.endGame();
+            st.gameIsEnding();
         }
         else{
-            st.incorrectResponse();
+            st.incorrectResponse(playerResponse);
         }
+
     }
 
     public void createPlayer(String playerHandle) {
         st.createStatePlayer(playerHandle);
+    }
+
+    public void gameLoop(){
+        st.gameIsRunning();
     }
 
 }

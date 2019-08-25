@@ -9,7 +9,7 @@ package MVC_UDF;
  */
 public class Player {
 
-    final private String playerName;
+    private String playerName;
     private int playerHighScore;
     private float winRate;
     private int numOfWins;
@@ -25,6 +25,10 @@ public class Player {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public void setPlayerName(String playerName){
+        this.playerName = playerName;
     }
 
     public int getPlayerHighScore() {

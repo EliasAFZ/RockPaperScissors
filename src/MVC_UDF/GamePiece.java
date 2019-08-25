@@ -10,12 +10,12 @@ package MVC_UDF;
 public class GamePiece {
 
     private String pieceName;
-    private String losesToo;
+    private String losesTo;
     private String winsAgainst;
 
-    public GamePiece(String pieceName, String losesToo, String winsAgainst) {
+    public GamePiece(String pieceName, String losesTo, String winsAgainst) {
         this.pieceName = pieceName;
-        this.losesToo = losesToo;
+        this.losesTo = losesTo;
         this.winsAgainst = winsAgainst;
     }
 
@@ -23,8 +23,8 @@ public class GamePiece {
         return pieceName;
     }
 
-    public String getLosesToo() {
-        return losesToo;
+    public String getLosesTo() {
+        return losesTo;
     }
 
     public String getWinsAgainst() {

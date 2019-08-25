@@ -9,7 +9,7 @@ package MVC_UDF;
  */
 public class Computer {
 
-    final private String playerName = "mvc.Computer";
+    final private String playerName = "Computer";
     private int computerHighScore;
     private float winRate;
     private int numOfWins;

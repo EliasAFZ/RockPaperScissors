@@ -3,7 +3,10 @@ package MVC_UDF;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 8/16/2019
- * Description: Plug and play driver that can be switched out for testing.
+ * Description: Driver class, normally in MVC you just create all the references to
+ * the objects for model/view and pass them to controller however I wanted to explore
+ * unidirectional data flow so for this all the driver contains is a reference to the
+ * controller and calls the launch method to set it all off.
  *
  * @Author Elias Afzalzada
  */
