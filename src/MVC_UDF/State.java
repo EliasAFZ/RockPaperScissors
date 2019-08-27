@@ -33,7 +33,7 @@ public class State {
     }
 
     public void gameIsRunning(){
-        vw.gameViewRunning(gamePieceMap.size());
+        vw.gameViewRunning(gamePieceMap.size(), gamePieceMap.keySet().toString());
     }
 
     public void gameIsEnding(){

@@ -18,7 +18,7 @@ public class View {
 
     public void welcomeDisplay() {
         String welcomeMessage = "\nWelcome to a weird version of Rock/Paper/Scissors/? \n\n" +
-                "Game description: So this version is based of the original rules that rock beats \n" +
+                "Game description: So this version is based on the original rules that rock beats \n" +
                 "scissor, paper beats rock, scissors beats paper, etc. However in this version \n" +
                 "you may add a new piece each time you win! So when you win you get to name \n" +
                 "said new piece and declare its strength/weakness the only caveat would be that \n" +
@@ -47,10 +47,10 @@ public class View {
         cr.createPlayer(playerHandle);
     }
 
-    public void gameViewRunning(int currentNumberOfGameObjects){
+    public void gameViewRunning(int numOfGamePieces, String mapGameKeys){
         retrievePlayerName();
-        System.out.println("Alright so currently their are " + currentNumberOfGameObjects + " game pieces, they are: " +
-                           "");
+        System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, " +
+                           "they are: " + mapGameKeys);
 
 
     }
