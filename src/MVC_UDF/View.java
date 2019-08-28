@@ -27,13 +27,13 @@ public class View {
     }
 
     public void setInitialAppView() {
-        welcomeDisplay();
-        continueGameQuestion(null);
+            welcomeDisplay();
+            startGameQuestion(null);
     }
 
-    public void continueGameQuestion(String incorrectResponse){
+    public void startGameQuestion(String incorrectResponse){
         if(incorrectResponse != null){
-            System.out.println(incorrectResponse + " is an invalid response.");
+            System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
         }
         System.out.print("Would you like to play?(Yes/No): ");
         String playerResponse = userInput.nextLine();
@@ -47,10 +47,21 @@ public class View {
         cr.createPlayer(playerHandle);
     }
 
+    public void gameViewStatus(int numOfGamePieces, String mapGameKeys){
+        System.out.print("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
+                "they are: " + mapGameKeys + ".\n" + "Do you need to see there Strengths/Weaknesses?(Yes/No): ");
+                String playerResponse = userInput.nextLine();
+
+    }
+
+    public void gameViewRules(){
+
+    }
+
     public void gameViewRunning(int numOfGamePieces, String mapGameKeys){
         retrievePlayerName();
-        System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, " +
-                           "they are: " + mapGameKeys);
+        gameViewStatus(numOfGamePieces, mapGameKeys);
+        gameViewRules();
 
 
     }

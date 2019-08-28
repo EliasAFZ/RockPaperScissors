@@ -28,8 +28,8 @@ public class State {
     }
 
     public void createStatePlayer(String playerHandle) {
-        Player p1 = new Player(playerHandle);
-        playerMap.put(playerHandle, p1);
+        Player player = new Player(playerHandle);
+        playerMap.put(playerHandle, player);
     }
 
     public void gameIsRunning(){
@@ -42,7 +42,8 @@ public class State {
     }
 
     public void incorrectResponse(String incorrectResponse){
-        vw.continueGameQuestion(incorrectResponse);
+        vw.startGameQuestion(incorrectResponse);
     }
+
 
 }

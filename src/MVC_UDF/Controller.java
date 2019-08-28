@@ -15,25 +15,20 @@ public class Controller {
         st.setInitialAppState();
     }
 
-    public void startGameResponse(String playerResponse){
-        if(playerResponse.equalsIgnoreCase("yes")){
-            gameLoop();
-        }
-        else if(playerResponse.equalsIgnoreCase("no")){
+    public void createPlayer(String playerHandle) {
+        st.createStatePlayer(playerHandle);
+    }
+
+    public void startGameResponse(String playerResponse) {
+        if (playerResponse.equalsIgnoreCase("yes")) {
+            st.gameIsRunning();
+        } else if (playerResponse.equalsIgnoreCase("no")) {
             st.gameIsEnding();
-        }
-        else{
+        } else {
             st.incorrectResponse(playerResponse);
         }
 
     }
 
-    public void createPlayer(String playerHandle) {
-        st.createStatePlayer(playerHandle);
-    }
-
-    public void gameLoop(){
-        st.gameIsRunning();
-    }
 
 }
