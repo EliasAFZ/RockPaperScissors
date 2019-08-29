@@ -21,19 +21,29 @@ public class Controller {
 
     public void startGameResponse(String playerResponse) {
         if (playerResponse.equalsIgnoreCase("yes")) {
-            st.getPlayerName();
-            gameLoop(playerResponse);
+            st.retrievePlayerName();
+            st.gameIsRunning();
         } else if (playerResponse.equalsIgnoreCase("no")) {
-            st.gameIsEnding();
+            st.gameJustLooking();
         } else {
             st.incorrectResponse(playerResponse);
+            st.startGameQuestion();
         }
     }
 
     public void gameLoop(String playerResponse){
-        while(playerResponse.equalsIgnoreCase("yes")){
+        //while(playerResponse.equalsIgnoreCase("yes")){
+        if(playerResponse.equalsIgnoreCase("yes")){
             st.gameIsRunning();
         }
+        else if(playerResponse.equalsIgnoreCase("no")){
+            st.gameIsEnding();
+        }
+        else{
+            st.incorrectResponse(playerResponse);
+        }
+            //break;
+        //}
     }
 
 }

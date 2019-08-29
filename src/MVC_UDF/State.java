@@ -43,13 +43,21 @@ public class State {
         vw.gameViewEnding();
     }
 
-    public void incorrectResponse(String incorrectResponse){
-        vw.incorrectViewResponse(incorrectResponse);
+    public void startGameQuestion(){
         vw.startGameQuestion();
     }
 
-    public void getPlayerName(){
+    public void incorrectResponse(String incorrectResponse){
+        vw.incorrectViewResponse(incorrectResponse);
+
+    }
+
+    public void retrievePlayerName(){
         vw.retrievePlayerName();
+    }
+
+    public void gameJustLooking(){
+        vw.gameViewJustLooking();
     }
 
 }

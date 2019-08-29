@@ -55,25 +55,39 @@ public class View {
         System.out.println("The rules for these pieces follow: " + "some rules here" + "\n");
     }
 
-    public void gameViewStatus(int numOfGamePieces, String mapGameKeys) {
+    public void gameViewStatus(int numOfGamePieces, String gamePieces) {
         System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
-                "they are: " + mapGameKeys + ".");
+                "they are: " + gamePieces + ".");
     }
 
-    public void gameViewContinueGame(){
+    public void gameViewStartRound(){
+
+    }
+
+    public void gameViewSelectWinner(){
+
+    }
+
+    public String gameViewContinueGame(){
         System.out.print("Would you like to keep playing?(Yes/No): ");
         String playerResponse = userInput.nextLine();
-        cr.gameLoop(playerResponse);
+        return playerResponse;
     }
 
-    public void gameViewRunning(int numOfGamePieces, String mapGameKeys) {
+    public void gameViewRunning( int numOfGamePieces, String mapGameKeys) {
         gameViewStatus(numOfGamePieces, mapGameKeys);
         gameViewRules();
-        //gameViewContinueGame();
+        //gameViewStartRound();
+        //gameViewSelectWinner();
+        cr.gameLoop(gameViewContinueGame());
 
     }
 
     public void gameViewEnding() {
         System.out.println("Thank you for playing!");
+    }
+
+    public void gameViewJustLooking(){
+        System.out.println("Thank you for checking out my game!");
     }
 }
