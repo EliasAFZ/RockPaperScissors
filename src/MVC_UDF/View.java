@@ -17,7 +17,7 @@ public class View {
     private Scanner userInput = new Scanner(System.in);
 
     public void welcomeDisplay() {
-        String welcomeMessage = "\nWelcome to a weird version of Rock/Paper/Scissors/? \n\n" +
+        String welcomeMessage = "\nWelcome to a weird game of Rock/Paper/Scissors/? \n\n" +
                 "Game description: So this version is based on the original rules that rock beats \n" +
                 "scissor, paper beats rock, scissors beats paper, etc. However in this version \n" +
                 "you may add a new piece each time you win! So when you win you get to name \n" +
@@ -27,42 +27,49 @@ public class View {
     }
 
     public void setInitialAppView() {
-            welcomeDisplay();
-            startGameQuestion(null);
+        welcomeDisplay();
+        startGameQuestion();
     }
 
-    public void startGameQuestion(String incorrectResponse){
-        if(incorrectResponse != null){
-            System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
-        }
+    public void startGameQuestion() {
         System.out.print("Would you like to play?(Yes/No): ");
         String playerResponse = userInput.nextLine();
         cr.startGameResponse(playerResponse);
     }
 
-    public void retrievePlayerName(){
-        System.out.print("\nPlease enter your gaming handle: ");
+    public void incorrectViewResponse(String incorrectResponse) {
+        System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
+    }
+
+    public void retrievePlayerName() {
+        System.out.print("Please enter your gaming handle: ");
         String playerHandle = userInput.nextLine();
         System.out.println("Hello there " + playerHandle + "! \n");
         cr.createPlayer(playerHandle);
     }
 
-    public void gameViewStatus(int numOfGamePieces, String mapGameKeys){
-        System.out.print("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
-                "they are: " + mapGameKeys + ".\n" + "Do you need to see there Strengths/Weaknesses?(Yes/No): ");
-                String playerResponse = userInput.nextLine();
-
+    public void gameViewRules() {
+        //System.out.print("Do you need to see there Strengths/Weaknesses?(Yes/No): ");
+        //String playerResponse = userInput.nextLine();
+        //cr.getRules(playerResponse);
+        System.out.println("The rules for these pieces follow: " + "some rules here" + "\n");
     }
 
-    public void gameViewRules(){
-
+    public void gameViewStatus(int numOfGamePieces, String mapGameKeys) {
+        System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
+                "they are: " + mapGameKeys + ".");
     }
 
-    public void gameViewRunning(int numOfGamePieces, String mapGameKeys){
-        retrievePlayerName();
+    public void gameViewContinueGame(){
+        System.out.print("Would you like to keep playing?(Yes/No): ");
+        String playerResponse = userInput.nextLine();
+        cr.gameLoop(playerResponse);
+    }
+
+    public void gameViewRunning(int numOfGamePieces, String mapGameKeys) {
         gameViewStatus(numOfGamePieces, mapGameKeys);
         gameViewRules();
-
+        //gameViewContinueGame();
 
     }
 

@@ -1,5 +1,6 @@
 package MVC_UDF;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,37 +14,42 @@ import java.util.HashMap;
 public class State {
 
     private static View vw = new View();
-    private Computer cpu = new Computer();
     private HashMap<String, Player> playerMap = new HashMap<>();
-    private HashMap<String, GamePiece> gamePieceMap = new HashMap<>();
+    private ArrayList<GamePiece> gamePieceArrayList = new ArrayList<>();
     final private GamePiece rock = new GamePiece("Rock", "Paper", "scissors");
     final private GamePiece paper = new GamePiece("Paper", "Scissors", "Rock");
     final private GamePiece scissors = new GamePiece("Scissors", "Rock", "Paper");
 
     public void setInitialAppState() {
-        gamePieceMap.put("Rock", rock);
-        gamePieceMap.put("Paper", paper);
-        gamePieceMap.put("Scissors", scissors);
+        gamePieceArrayList.add(rock);
+        gamePieceArrayList.add(paper);
+        gamePieceArrayList.add(scissors);
         vw.setInitialAppView();
     }
 
     public void createStatePlayer(String playerHandle) {
+        Player computer = new Player("Computer");
         Player player = new Player(playerHandle);
         playerMap.put(playerHandle, player);
+        playerMap.put("Computer", computer);
     }
 
     public void gameIsRunning(){
-        vw.gameViewRunning(gamePieceMap.size(), gamePieceMap.keySet().toString());
+        vw.gameViewRunning(gamePieceArrayList.size(), "test");
     }
 
     public void gameIsEnding(){
-        gamePieceMap.clear();
+        gamePieceArrayList.clear();
         vw.gameViewEnding();
     }
 
     public void incorrectResponse(String incorrectResponse){
-        vw.startGameQuestion(incorrectResponse);
+        vw.incorrectViewResponse(incorrectResponse);
+        vw.startGameQuestion();
     }
 
+    public void getPlayerName(){
+        vw.retrievePlayerName();
+    }
 
 }

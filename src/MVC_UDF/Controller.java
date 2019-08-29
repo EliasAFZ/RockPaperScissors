@@ -21,14 +21,19 @@ public class Controller {
 
     public void startGameResponse(String playerResponse) {
         if (playerResponse.equalsIgnoreCase("yes")) {
-            st.gameIsRunning();
+            st.getPlayerName();
+            gameLoop(playerResponse);
         } else if (playerResponse.equalsIgnoreCase("no")) {
             st.gameIsEnding();
         } else {
             st.incorrectResponse(playerResponse);
         }
-
     }
 
+    public void gameLoop(String playerResponse){
+        while(playerResponse.equalsIgnoreCase("yes")){
+            st.gameIsRunning();
+        }
+    }
 
 }
