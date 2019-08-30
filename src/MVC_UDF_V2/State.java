@@ -18,4 +18,8 @@ public class State {
     final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
 
+    State(){
+
+    }
+
 }

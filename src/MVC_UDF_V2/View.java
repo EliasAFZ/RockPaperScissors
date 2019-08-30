@@ -18,8 +18,8 @@ public class View {
        this.action= action;
     }
 
-    public void brazzers(){
-        action.addPlayer("YEET");
+    public void test(){
+        action.addPlayer("test");
     }
 
 }
