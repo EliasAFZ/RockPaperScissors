@@ -1,4 +1,4 @@
-package MVC_UDF;
+package MVC_UDF_V2;
 
 import java.util.Scanner;
 
