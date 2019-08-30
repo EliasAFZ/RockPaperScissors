@@ -48,35 +48,39 @@ public class View {
         cr.createPlayer(playerHandle);
     }
 
-    public void gameViewRules() {
-        //System.out.print("Do you need to see there Strengths/Weaknesses?(Yes/No): ");
-        //String playerResponse = userInput.nextLine();
-        //cr.getRules(playerResponse);
-        System.out.println("The rules for these pieces follow: " + "some rules here" + "\n");
-    }
-
     public void gameViewStatus(int numOfGamePieces, String gamePieces) {
         System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
-                "they are: " + gamePieces + ".");
+                "they are: " + gamePieces);
     }
 
-    public void gameViewStartRound(){
+    public void gameViewRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
+        System.out.println("The rules for these pieces follow:\n"
+                         + " ");
+
+
+        System.out.println("Game Pieces: " + gamePieces);
+        System.out.println("Wins against: " + gamePieceWinRules);
+        System.out.println("Loses against: " + gamePieceLoseRules);
 
     }
 
-    public void gameViewSelectWinner(){
+    public void gameViewStartRound() {
 
     }
 
-    public String gameViewContinueGame(){
+    public void gameViewSelectWinner() {
+
+    }
+
+    public String gameViewContinueGame() {
         System.out.print("Would you like to keep playing?(Yes/No): ");
         String playerResponse = userInput.nextLine();
         return playerResponse;
     }
 
-    public void gameViewRunning( int numOfGamePieces, String mapGameKeys) {
-        gameViewStatus(numOfGamePieces, mapGameKeys);
-        gameViewRules();
+    public void gameViewRunning(int numOfGamePieces, String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
+        gameViewStatus(numOfGamePieces, gamePieces);
+        gameViewRules(gamePieces, gamePieceWinRules, gamePieceLoseRules);
         //gameViewStartRound();
         //gameViewSelectWinner();
         cr.gameLoop(gameViewContinueGame());
@@ -87,7 +91,7 @@ public class View {
         System.out.println("Thank you for playing!");
     }
 
-    public void gameViewJustLooking(){
+    public void gameViewJustLooking() {
         System.out.println("Thank you for checking out my game!");
     }
 }

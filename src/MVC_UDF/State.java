@@ -12,13 +12,12 @@ import java.util.HashMap;
  */
 
 public class State {
-
     private static View vw = new View();
     private HashMap<String, Player> playerMap = new HashMap<>();
     private ArrayList<GamePiece> gamePieceArrayList = new ArrayList<>();
-    final private GamePiece rock = new GamePiece("Rock", "Paper", "scissors");
-    final private GamePiece paper = new GamePiece("Paper", "Scissors", "Rock");
-    final private GamePiece scissors = new GamePiece("Scissors", "Rock", "Paper");
+    final private GamePiece rock = new GamePiece("Rock", "scissors", "paper");
+    final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
+    final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
 
     public void setInitialAppState() {
         gamePieceArrayList.add(rock);
@@ -34,29 +33,35 @@ public class State {
         playerMap.put("Computer", computer);
     }
 
-    public void gameIsRunning(){
-        vw.gameViewRunning(gamePieceArrayList.size(), "test");
+    public void gameIsRunning() {
+        String gamePieceList = "", gamePieceWinRules = "", gamePieceLoseRules = "";
+        for (GamePiece currentPiece : gamePieceArrayList) {
+            gamePieceList += currentPiece.getPieceName() + " ";
+            gamePieceWinRules += currentPiece.getWinsAgainst() + " ";
+            gamePieceLoseRules += currentPiece.getLosesTo() + " ";
+        }
+        vw.gameViewRunning(gamePieceArrayList.size(), gamePieceList, gamePieceWinRules, gamePieceLoseRules);
     }
 
-    public void gameIsEnding(){
+    public void gameIsEnding() {
         gamePieceArrayList.clear();
         vw.gameViewEnding();
     }
 
-    public void startGameQuestion(){
+    public void startGameQuestion() {
         vw.startGameQuestion();
     }
 
-    public void incorrectResponse(String incorrectResponse){
+    public void incorrectResponse(String incorrectResponse) {
         vw.incorrectViewResponse(incorrectResponse);
 
     }
 
-    public void retrievePlayerName(){
+    public void retrievePlayerName() {
         vw.retrievePlayerName();
     }
 
-    public void gameJustLooking(){
+    public void gameJustLooking() {
         vw.gameViewJustLooking();
     }
 

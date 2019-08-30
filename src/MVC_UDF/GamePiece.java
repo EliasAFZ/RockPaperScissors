@@ -10,24 +10,24 @@ package MVC_UDF;
 public class GamePiece {
 
     private String pieceName;
-    private String losesTo;
     private String winsAgainst;
+    private String losesTo;
 
-    public GamePiece(String pieceName, String losesTo, String winsAgainst) {
+    public GamePiece(String pieceName, String winsAgainst, String losesTo) {
         this.pieceName = pieceName;
-        this.losesTo = losesTo;
         this.winsAgainst = winsAgainst;
+        this.losesTo = losesTo;
     }
 
     public String getPieceName() {
         return pieceName;
     }
 
-    public String getLosesTo() {
-        return losesTo;
-    }
-
     public String getWinsAgainst() {
         return winsAgainst;
+    }
+
+    public String getLosesTo() {
+        return losesTo;
     }
 }
