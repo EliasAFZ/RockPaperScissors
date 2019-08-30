@@ -1,19 +1,22 @@
+package MVC_UDF_V2;
+
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 7/20/2019
+ * Date: 8/20/2019
  * Description:
+ *
  * @Author Elias Afzalzada
  */
-public class Player implements Contextualizable {
+public class Player {
 
-    final private String playerName;
+    private String playerName;
     private int playerHighScore;
     private float winRate;
     private int numOfWins;
     private int numOfLosses;
 
     public Player(String _playerName) {
-        this.playerName = _playerName;
+        playerName = _playerName;
         playerHighScore = 0;
         winRate = 0;
         numOfLosses = 0;
