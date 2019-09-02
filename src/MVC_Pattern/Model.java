@@ -1,4 +1,4 @@
-package UDF;
+package MVC_Pattern;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.HashMap;
  * @Author Elias Afzalzada
  */
 
-public class State {
+public class Model {
 
     private HashMap<String, Player> playerMap = new HashMap<>();
     private ArrayList<GamePiece> gamePieceArrayList = new ArrayList<>();
@@ -18,7 +18,7 @@ public class State {
     final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
 
-    State(){
+    Model(){
         //TODO: receive state updates
     }
 

@@ -1,4 +1,4 @@
-package UDF;
+package MVC_Pattern;
 
 import java.util.Scanner;
 
@@ -13,14 +13,11 @@ import java.util.Scanner;
 // Only console based view for first iteration.
 public class View {
 
-    private Controller cr;
     private Scanner inputScanner = new Scanner(System.in);
 
-    View(Controller cr){
-        this.cr = cr;
+    View(){
        //TODO: set view actions
     }
-
 
 
 

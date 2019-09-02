@@ -1,4 +1,4 @@
-package UDF;
+package MVC_Pattern;
 
 
 /**
@@ -11,8 +11,8 @@ package UDF;
 
 public class Driver {
     public static void main(String[] args) {
-        State st = new State();
-        Controller cr = new Controller(st);
-        View vw = new View(cr);
+        View vw = new View();
+        Model ml = new Model();
+        Controller cr = new Controller(vw, ml);
     }
 }
