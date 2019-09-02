@@ -1,4 +1,4 @@
-package MVC_UDF_V2;
+package State_Pattern;
 
 /**
  * Name: RockPaperScissorsGame
@@ -8,8 +8,12 @@ package MVC_UDF_V2;
         * @Author Elias Afzalzada
         * Copyright © Elias Afzalzada - All Rights Reserved
         */
-public interface Action{
+interface GameState {
 
-    public void addPlayer(String playerName);
+    void addPlayer(Player player);
+
+    void isSelectingPiece(GamePiece gamePiece);
+
+    //TODO: add more actions for all states to use
 
 }

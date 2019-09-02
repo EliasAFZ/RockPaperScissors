@@ -1,4 +1,4 @@
-package MVC_UDF_V2;
+package State_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame

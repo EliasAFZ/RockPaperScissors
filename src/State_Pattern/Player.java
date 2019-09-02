@@ -1,4 +1,4 @@
-package MVC_UDF_V2;
+package State_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame
@@ -15,8 +15,8 @@ public class Player {
     private int numOfWins;
     private int numOfLosses;
 
-    public Player(String _playerName) {
-        playerName = _playerName;
+    public Player(String playerName) {
+        this.playerName = playerName;
         playerHighScore = 0;
         winRate = 0;
         numOfLosses = 0;
