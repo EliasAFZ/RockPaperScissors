@@ -3,7 +3,7 @@ package MVC_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 8/29/2019
+ * Date: 9/3/2019
  * Description:
  *
  * @Author Elias Afzalzada
@@ -18,5 +18,13 @@ public class Controller{
         this.ml = ml;
     }
 
+
+    public void gameLoop(){
+        vw.welcomeDisplay();
+    }
+
+    public void update(){
+
+    }
 
 }
