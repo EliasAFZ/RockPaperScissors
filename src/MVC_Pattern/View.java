@@ -17,12 +17,8 @@ public class View {
 
     View(){
        //TODO: set view actions
+        welcomeDisplay();
     }
-
-
-
-
-
 
     public void welcomeDisplay() {
         String welcomeMessage = "\nWelcome to a weird game of Rock/Paper/Scissors/? \n\n" +
@@ -34,9 +30,10 @@ public class View {
         System.out.println(welcomeMessage);
     }
 
-    public void startGameQuestion() {
+    public String startGameQuestion() {
         System.out.print("Would you like to play?(Yes/No): ");
         String playerResponse = inputScanner.nextLine();
+        return playerResponse;
     }
 
     public void incorrectViewResponse(String incorrectResponse) {

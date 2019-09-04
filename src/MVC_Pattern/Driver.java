@@ -15,6 +15,6 @@ public class Driver {
         Model ml = new Model();
         Controller cr = new Controller(vw, ml);
 
-        cr.gameLoop();
+        cr.startMenu();
     }
 }

@@ -12,11 +12,14 @@ import java.util.HashMap;
 
 public class Model {
 
-    private HashMap<String, Player> playerMap = new HashMap<>();
-    private ArrayList<GamePiece> gamePieceArrayList = new ArrayList<>();
     final private GamePiece rock = new GamePiece("Rock", "scissors", "paper");
     final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
+    private HashMap<String, Player> playerMap = new HashMap<>();
+    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
+    private GamePiece[] gamePieceSetOne = new GamePiece[1];
+    private GamePiece[] gamePieceSetTwo = new GamePiece[1];
+    private GamePiece[] gamePieceSetThree = new GamePiece[1];
 
     private enum gameObject{
         rock("Scissors", "Paper"),
@@ -39,10 +42,21 @@ public class Model {
 
     Model(){
         //TODO: receive state updates
+
     }
 
-    public void test(){
+    public void initState(){
+        activeGamePieceSet.add(rock);
+        activeGamePieceSet.add(paper);
+        activeGamePieceSet.add(scissors);
+    }
 
+    public void createPlayer(String playerName){
+        Player player = new Player(playerName);
+    }
+
+    public void addPlayer(Player p1){
+        playerMap.put(p1.getPlayerName(), p1);
     }
 
 }
