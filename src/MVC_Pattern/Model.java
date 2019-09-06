@@ -16,36 +16,10 @@ public class Model {
     final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
     private HashMap<String, Player> playerMap = new HashMap<>();
-    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
-    private GamePiece[] gamePieceSetOne = new GamePiece[1];
-    private GamePiece[] gamePieceSetTwo = new GamePiece[1];
-    private GamePiece[] gamePieceSetThree = new GamePiece[1];
-
-    private enum gameObject{
-        rock("Scissors", "Paper"),
-        paper("Scissors", "Paper"),
-        scissor("Scissors", "Paper"),
-        fire("Scissors", "Paper"),
-        water("Scissors", "Paper"),
-        air("Scissors", "Paper"),
-        sponge("Scissors", "Paper");
-
-        private final String winsAgainst;
-        private final String losesTo;
-
-        gameObject(String winsAgainst, String losesTo){
-            this.winsAgainst = winsAgainst;
-            this.losesTo = losesTo;
-        }
-    }
-
+    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<GamePiece>();
 
     Model(){
         //TODO: receive state updates
-
-    }
-
-    public void initState(){
         activeGamePieceSet.add(rock);
         activeGamePieceSet.add(paper);
         activeGamePieceSet.add(scissors);
@@ -53,10 +27,56 @@ public class Model {
 
     public void createPlayer(String playerName){
         Player player = new Player(playerName);
+        playerMap.put(playerName, player);
     }
 
-    public void addPlayer(Player p1){
-        playerMap.put(p1.getPlayerName(), p1);
+    public int numOfGamePieces(){
+        return activeGamePieceSet.size();
+    }
+
+    public String currentGamePieces(String condition){
+        return toString(activeGamePieceSet, condition);
+    }
+
+    public GamePiece getPiece(String gamePieceName){
+        GamePiece gp = null;
+        for(int i=0; i<activeGamePieceSet.size(); i++){
+            if(activeGamePieceSet.get(0).equals(rock)){
+
+            }
+        }
+
+        return gp;
+    }
+
+    public String toString(ArrayList activeGamePieceSet, String condition){
+        String listOfPieces = "";
+        switch (condition.toLowerCase()) {
+            case "names" -> {
+                for(int i=0; i<activeGamePieceSet.size(); i++){
+                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+                    listOfPieces += currentPiece.getPieceName() + " ";
+                }
+            }
+            case "winsagainst" -> {
+                for(int i=0; i<activeGamePieceSet.size(); i++){
+                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+                    listOfPieces += currentPiece.getWinsAgainst() + " ";
+                }
+            }
+            case "losesagainst" -> {
+                for(int i=0; i<activeGamePieceSet.size(); i++){
+                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+                    listOfPieces += currentPiece.getLosesTo() + " ";
+                }
+            }
+        }
+
+        //for(GamePiece i : activeGamePieceSet){
+        //    listOfPieces += i.getPieceName();
+        //}
+
+        return listOfPieces;
     }
 
 }
