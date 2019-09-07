@@ -11,16 +11,16 @@ import java.util.Scanner;
  */
 
 // Only console based view for first iteration.
-public class View {
+class View {
 
     private Scanner inputScanner = new Scanner(System.in);
 
-    View(){
-       //TODO: set view actions
+    View() {
+        //TODO: set view actions
         welcomeDisplay();
     }
 
-    public void welcomeDisplay() {
+    private void welcomeDisplay() {
         String welcomeMessage = "\nWelcome to a weird game of Rock/Paper/Scissors/? \n\n" +
                 "Game description: So this game is based on the original rules that rock beats \n" +
                 "scissor, paper beats rock, scissors beats paper, etc. However in this version \n" +
@@ -30,29 +30,28 @@ public class View {
         System.out.println(welcomeMessage);
     }
 
-    public String startGameQuestion() {
+    String startGameQuestion() {
         System.out.print("Would you like to play?(Yes/No): ");
-        String playerResponse = inputScanner.nextLine();
-        return playerResponse;
+        return inputScanner.nextLine();
     }
 
-    public void incorrectViewResponse(String incorrectResponse) {
+    void incorrectViewResponse(String incorrectResponse) {
         System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
     }
 
-    public String retrievePlayerName() {
+    String retrievePlayerName() {
         System.out.print("Please enter your gaming handle: ");
         String playerHandle = inputScanner.nextLine();
         System.out.println("Hello there " + playerHandle + "! \n");
         return playerHandle;
     }
 
-    public void gameViewStatus(int numOfGamePieces, String gamePieces) {
+    void gameViewStatus(int numOfGamePieces, String gamePieces) {
         System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
                 "they are: " + gamePieces);
     }
 
-    public void gameViewRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
+    void gameViewRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
         System.out.println("The rules for these pieces follow:\n"
                 + " ");
 
@@ -63,31 +62,29 @@ public class View {
 
     }
 
-    public String gameViewStartRound() {
-        System.out.println("Please enter your game piece choice: ");
-        String selectedGamePiece = inputScanner.nextLine();
-        return selectedGamePiece;
+    String gameViewStartRound() {
+        System.out.print("Please enter your game piece choice: ");
+        return inputScanner.nextLine();
     }
 
-    public void gameViewSelectWinner() {
+    void gameViewSelectWinner() {
         System.out.println("The winner is: " + "winnername");
     }
 
-    public void gameViewSelectLoser() {
+    void gameViewSelectLoser() {
         System.out.println("The loser is: " + "losername");
     }
 
-    public String gameViewContinueGame() {
+    String gameViewContinueGame() {
         System.out.print("Would you like to keep playing?(Yes/No): ");
-        String playerResponse = inputScanner.nextLine();
-        return playerResponse;
+        return inputScanner.nextLine();
     }
 
-    public void gameViewJustLooking() {
+    void gameViewJustLooking() {
         System.out.println("Thank you for checking out my game!");
     }
 
-    public void gameViewEnding() {
+    void gameViewEnding() {
         System.out.println("Thank you for playing!");
     }
 }

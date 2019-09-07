@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @Author Elias Afzalzada
  */
-public class Controller {
+class Controller {
 
     private View vw;
     private Model ml;
@@ -20,9 +20,8 @@ public class Controller {
     }
 
 
-    public void startMenu() {
+    void startMenu() {
         String playerResponse = vw.startGameQuestion();
-
         // Switch expression new in java 12
         switch (playerResponse.toLowerCase()) {
             case "yes" -> {
@@ -36,13 +35,21 @@ public class Controller {
                 startMenu();
             }
         }
-
     }
 
-    public void gameLoop(String playerResponse) {
-        while(playerResponse.equalsIgnoreCase("yes")){
-            vw.gameViewStatus(ml.numOfGamePieces(), ml.currentGamePieces("names"));
-            vw.gameViewRules(ml.currentGamePieces("names"), ml.currentGamePieces("winsAgainst"),ml.currentGamePieces("losesAgainst"));
+    //enum testing for type safety
+    enum Condition {
+        names, winsagainst, losesagainst
+    }
+
+    private void gameLoop(String playerResponse) {
+
+        while (playerResponse.equalsIgnoreCase("yes")) {
+            vw.gameViewStatus(ml.numOfGamePieces(),
+                    ml.currentGamePieces(Condition.names));
+            vw.gameViewRules(ml.currentGamePieces(Condition.names),
+                    ml.currentGamePieces(Condition.winsagainst),
+                    ml.currentGamePieces(Condition.losesagainst));
             gameCheck();
 
 
@@ -51,12 +58,16 @@ public class Controller {
         vw.gameViewEnding();
     }
 
-    public void gameCheck() {
+    private void gameCheck() {
         Random randGen = new Random();
         String p1SelectedPiece = vw.gameViewStartRound();
-        ml.getPiece(p1SelectedPiece);
+        if (ml.containsPiece(p1SelectedPiece)) {
+            ml.retrieveWinLoseConditions(p1SelectedPiece);
+        } else {
+            vw.incorrectViewResponse(p1SelectedPiece);
+            gameCheck();
+        }
         //String p2SelectedPiece = randGen.nextInt(ml.numOfGamePieces());
     }
-
 
 }

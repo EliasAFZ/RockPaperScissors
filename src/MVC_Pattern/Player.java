@@ -7,7 +7,7 @@ package MVC_Pattern;
  *
  * @Author Elias Afzalzada
  */
-public class Player {
+class Player {
 
     private String playerName;
     private int playerHighScore;
@@ -15,7 +15,7 @@ public class Player {
     private int numOfWins;
     private int numOfLosses;
 
-    public Player(String playerName) {
+    Player(String playerName) {
         this.playerName = playerName;
         playerHighScore = 0;
         winRate = 0;
@@ -23,39 +23,39 @@ public class Player {
         numOfWins = 0;
     }
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return playerName;
     }
 
-    public int getPlayerHighScore() {
+    int getPlayerHighScore() {
         return playerHighScore;
     }
 
-    public void setPlayerHighScore(int playerHighScore) {
+    void setPlayerHighScore(int playerHighScore) {
         this.playerHighScore = playerHighScore;
     }
 
-    public float getWinRate() {
+    float getWinRate() {
         return winRate;
     }
 
-    public void setWinRate(float winRate) {
+    void setWinRate(float winRate) {
         this.winRate = winRate;
     }
 
-    public int getNumOfWins() {
+    int getNumOfWins() {
         return numOfWins;
     }
 
-    public void setNumOfWins(int numOfWins) {
+    void setNumOfWins(int numOfWins) {
         this.numOfWins = numOfWins;
     }
 
-    public int getNumOfLosses() {
+    int getNumOfLosses() {
         return numOfLosses;
     }
 
-    public void setNumOfLosses(int numOfLosses) {
+    void setNumOfLosses(int numOfLosses) {
         this.numOfLosses = numOfLosses;
     }
 }
