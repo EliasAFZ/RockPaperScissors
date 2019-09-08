@@ -2,6 +2,8 @@ package MVC_Pattern;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/3/2019
@@ -10,73 +12,88 @@ import java.util.HashMap;
  * @Author Elias Afzalzada
  */
 
-public class Model {
+class Model {
 
-    final private GamePiece rock = new GamePiece("Rock", "scissors", "paper");
-    final private GamePiece paper = new GamePiece("Paper", "rock", "scissors");
-    final private GamePiece scissors = new GamePiece("Scissors", "paper", "rock");
+    final private GamePiece rock = new GamePiece("rock", "scissors", "paper");
+    final private GamePiece paper = new GamePiece("paper", "rock", "scissors");
+    final private GamePiece scissors = new GamePiece("scissors", "paper", "rock");
     private HashMap<String, Player> playerMap = new HashMap<>();
-    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<GamePiece>();
+    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
 
-    Model(){
-        //TODO: receive state updates
+    Model() {
         activeGamePieceSet.add(rock);
         activeGamePieceSet.add(paper);
         activeGamePieceSet.add(scissors);
     }
 
-    public void createPlayer(String playerName){
+    void createPlayer(String playerName) {
         Player player = new Player(playerName);
         playerMap.put(playerName, player);
     }
 
-    public int numOfGamePieces(){
+    int numOfGamePieces() {
         return activeGamePieceSet.size();
     }
 
-    public String currentGamePieces(String condition){
-        return toString(activeGamePieceSet, condition);
+    String getCpuPieceChoice() {
+        Random randGen = new Random();
+        int randPieceIndex = randGen.nextInt(activeGamePieceSet.size());
+        GamePiece cpuChosenPiece = activeGamePieceSet.get(randPieceIndex);
+        return cpuChosenPiece.getPieceName();
     }
 
-    public GamePiece getPiece(String gamePieceName){
-        GamePiece gp = null;
-        for(int i=0; i<activeGamePieceSet.size(); i++){
-            if(activeGamePieceSet.get(0).equals(rock)){
+    //TODO: migrate this function to controller
+    String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
+        GamePiece p1GamePiece = toGamePiece(p1SelectedPiece);
+        GamePiece p2GamePiece = toGamePiece(p1SelectedPiece);
+        String matchResult = "Error";
+        if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2SelectedPiece)) {
+            matchResult = "p1Winner";
+        } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1SelectedPiece)) {
+            matchResult = "p2Winner";
+        } else if (p1SelectedPiece.equalsIgnoreCase(p2SelectedPiece)) {
+            matchResult = "tie";
+        }
+        return matchResult;
+    }
 
+    boolean containsPiece(String playerSelectedPiece) {
+        for (GamePiece gamePiece : activeGamePieceSet) {
+            if (playerSelectedPiece.equalsIgnoreCase(gamePiece.getPieceName())) {
+                return true;
             }
         }
-
-        return gp;
+        return false;
     }
 
-    public String toString(ArrayList activeGamePieceSet, String condition){
+    GamePiece toGamePiece(String gamePieceName) {
+        for (GamePiece currentPiece : activeGamePieceSet) {
+            if (currentPiece.getPieceName().equalsIgnoreCase(gamePieceName)) {
+                return currentPiece;
+            }
+        }
+        return null;
+    }
+
+    String stringGamePieces(Controller.Condition condition) {
         String listOfPieces = "";
-        switch (condition.toLowerCase()) {
-            case "names" -> {
-                for(int i=0; i<activeGamePieceSet.size(); i++){
-                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+        switch (condition) {
+            case names -> {
+                for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces += currentPiece.getPieceName() + " ";
                 }
             }
-            case "winsagainst" -> {
-                for(int i=0; i<activeGamePieceSet.size(); i++){
-                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+            case winsagainst -> {
+                for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces += currentPiece.getWinsAgainst() + " ";
                 }
             }
-            case "losesagainst" -> {
-                for(int i=0; i<activeGamePieceSet.size(); i++){
-                    GamePiece currentPiece = (GamePiece) activeGamePieceSet.get(i);
+            case losesagainst -> {
+                for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces += currentPiece.getLosesTo() + " ";
                 }
             }
         }
-
-        //for(GamePiece i : activeGamePieceSet){
-        //    listOfPieces += i.getPieceName();
-        //}
-
         return listOfPieces;
     }
-
 }

@@ -7,27 +7,27 @@ package MVC_Pattern;
  *
  * @Author Elias Afzalzada
  */
-public class GamePiece {
+class GamePiece {
 
     private String pieceName;
     private String winsAgainst;
     private String losesTo;
 
-    public GamePiece(String pieceName, String winsAgainst, String losesTo) {
+    GamePiece(String pieceName, String winsAgainst, String losesTo) {
         this.pieceName = pieceName;
         this.winsAgainst = winsAgainst;
         this.losesTo = losesTo;
     }
 
-    public String getPieceName() {
+    String getPieceName() {
         return pieceName;
     }
 
-    public String getWinsAgainst() {
+    String getWinsAgainst() {
         return winsAgainst;
     }
 
-    public String getLosesTo() {
+    String getLosesTo() {
         return losesTo;
     }
 }
