@@ -1,7 +1,5 @@
 package MVC_Pattern;
 
-import java.util.Random;
-
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/3/2019
@@ -18,7 +16,6 @@ class Controller {
         this.vw = vw;
         this.ml = ml;
     }
-
 
     void startMenu() {
         String playerResponse = vw.startGameQuestion();
@@ -37,37 +34,37 @@ class Controller {
         }
     }
 
+
     //enum testing for type safety
     enum Condition {
         names, winsagainst, losesagainst
     }
 
     private void gameLoop(String playerResponse) {
-
         while (playerResponse.equalsIgnoreCase("yes")) {
             vw.gameViewStatus(ml.numOfGamePieces(),
-                    ml.currentGamePieces(Condition.names));
-            vw.gameViewRules(ml.currentGamePieces(Condition.names),
-                    ml.currentGamePieces(Condition.winsagainst),
-                    ml.currentGamePieces(Condition.losesagainst));
+                    ml.stringGamePieces(Condition.names));
+            vw.gameViewRules(ml.stringGamePieces(Condition.names),
+                    ml.stringGamePieces(Condition.winsagainst),
+                    ml.stringGamePieces(Condition.losesagainst));
             gameCheck();
-
-
+            //updateStats();
             playerResponse = vw.gameViewContinueGame();
         }
         vw.gameViewEnding();
     }
 
     private void gameCheck() {
-        Random randGen = new Random();
-        String p1SelectedPiece = vw.gameViewStartRound();
+        String p1SelectedPiece = vw.getPlayePieceChoice();
+        String p2SelectedPiece = ml.getCpuPieceChoice();
+        String matchResults;
         if (ml.containsPiece(p1SelectedPiece)) {
-            ml.retrieveWinLoseConditions(p1SelectedPiece);
+            matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
+            //TODO: remove test
+            System.out.println(matchResults);
         } else {
             vw.incorrectViewResponse(p1SelectedPiece);
             gameCheck();
         }
-        //String p2SelectedPiece = randGen.nextInt(ml.numOfGamePieces());
     }
-
 }

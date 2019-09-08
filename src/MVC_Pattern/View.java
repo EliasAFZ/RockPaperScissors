@@ -16,7 +16,6 @@ class View {
     private Scanner inputScanner = new Scanner(System.in);
 
     View() {
-        //TODO: set view actions
         welcomeDisplay();
     }
 
@@ -52,9 +51,7 @@ class View {
     }
 
     void gameViewRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
-        System.out.println("The rules for these pieces follow:\n"
-                + " ");
-
+        System.out.println("The rules for these pieces follow:\n" + " ");
         System.out.println("RULES");
         System.out.println("Game Pieces: " + gamePieces);
         System.out.println("Wins against: " + gamePieceWinRules);
@@ -62,7 +59,7 @@ class View {
 
     }
 
-    String gameViewStartRound() {
+    String getPlayePieceChoice() {
         System.out.print("Please enter your game piece choice: ");
         return inputScanner.nextLine();
     }
