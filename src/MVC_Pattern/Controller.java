@@ -42,19 +42,23 @@ class Controller {
 
     private void gameLoop(String playerResponse) {
         while (playerResponse.equalsIgnoreCase("yes")) {
-            vw.gameViewStatus(ml.numOfGamePieces(),
-                    ml.stringGamePieces(Condition.names));
-            vw.gameViewRules(ml.stringGamePieces(Condition.names),
-                    ml.stringGamePieces(Condition.winsagainst),
-                    ml.stringGamePieces(Condition.losesagainst));
-            gameCheck();
-            //updateStats();
+            gameCurrentRules();
+            gameRoundCheck();
+            //updatePlayerStats();
             playerResponse = vw.gameViewContinueGame();
         }
         vw.gameViewEnding();
     }
 
-    private void gameCheck() {
+    private void gameCurrentRules(){
+        vw.gameViewStatus(ml.numOfGamePieces(),
+                ml.stringGamePieces(Condition.names));
+        vw.gameViewRules(ml.stringGamePieces(Condition.names),
+                ml.stringGamePieces(Condition.winsagainst),
+                ml.stringGamePieces(Condition.losesagainst));
+    }
+
+    private void gameRoundCheck() {
         String p1SelectedPiece = vw.getPlayePieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
         String matchResults;
@@ -64,7 +68,7 @@ class Controller {
             System.out.println(matchResults);
         } else {
             vw.incorrectViewResponse(p1SelectedPiece);
-            gameCheck();
+            gameRoundCheck();
         }
     }
 }
