@@ -31,7 +31,7 @@ class View {
 
     String startGameQuestion() {
         System.out.print("Would you like to play?(Yes/No): ");
-        return inputScanner.nextLine();
+        return inputScanner.nextLine().toLowerCase();
     }
 
     void incorrectViewResponse(String incorrectResponse) {
@@ -61,7 +61,7 @@ class View {
 
     String getPlayePieceChoice() {
         System.out.print("Please enter your game piece choice: ");
-        return inputScanner.nextLine();
+        return inputScanner.nextLine().toLowerCase();
     }
 
     void gameViewSelectWinner() {
@@ -74,7 +74,7 @@ class View {
 
     String gameViewContinueGame() {
         System.out.print("Would you like to keep playing?(Yes/No): ");
-        return inputScanner.nextLine();
+        return inputScanner.nextLine().toLowerCase();
     }
 
     void gameViewJustLooking() {

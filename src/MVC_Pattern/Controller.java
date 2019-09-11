@@ -34,7 +34,6 @@ class Controller {
         }
     }
 
-
     //enum testing for type safety
     enum Condition {
         names, winsagainst, losesagainst
@@ -50,9 +49,8 @@ class Controller {
         vw.gameViewEnding();
     }
 
-    private void gameCurrentRules(){
-        vw.gameViewStatus(ml.numOfGamePieces(),
-                ml.stringGamePieces(Condition.names));
+    private void gameCurrentRules() {
+        vw.gameViewStatus(ml.numOfGamePieces(), ml.stringGamePieces(Condition.names));
         vw.gameViewRules(ml.stringGamePieces(Condition.names),
                 ml.stringGamePieces(Condition.winsagainst),
                 ml.stringGamePieces(Condition.losesagainst));
@@ -61,7 +59,7 @@ class Controller {
     private void gameRoundCheck() {
         String p1SelectedPiece = vw.getPlayePieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
-        String matchResults;
+        String matchResults = "";
         if (ml.containsPiece(p1SelectedPiece)) {
             matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
             //TODO: remove test
