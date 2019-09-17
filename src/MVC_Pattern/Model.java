@@ -46,7 +46,8 @@ class Model {
     String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
         GamePiece p1GamePiece = toGamePiece(p1SelectedPiece);
         GamePiece p2GamePiece = toGamePiece(p1SelectedPiece);
-        String matchResult = "Error";
+        //TODO: fix if statements not getting hit
+        String matchResult = "error??? didnt hit any if's";
         if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2SelectedPiece)) {
             matchResult = "p1Winner";
         } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1SelectedPiece)) {

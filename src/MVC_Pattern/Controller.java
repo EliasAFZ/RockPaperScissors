@@ -17,6 +17,11 @@ class Controller {
         this.ml = ml;
     }
 
+    //enum testing for type safety
+    enum Condition {
+        names, winsagainst, losesagainst
+    }
+
     void startMenu() {
         String playerResponse = vw.startGameQuestion();
         // Switch expression new in java 12
@@ -34,19 +39,23 @@ class Controller {
         }
     }
 
-    //enum testing for type safety
-    enum Condition {
-        names, winsagainst, losesagainst
-    }
-
     private void gameLoop(String playerResponse) {
         while (playerResponse.equalsIgnoreCase("yes")) {
             gameCurrentRules();
             gameRoundCheck();
-            //updatePlayerStats();
+            updatePlayerStats();
             playerResponse = vw.gameViewContinueGame();
+            switch (playerResponse.toLowerCase()) {
+                case "yes" -> {
+                    continue;
+                }
+                case "no" -> vw.gameViewEnding();
+                default -> {
+                    vw.incorrectViewResponse(playerResponse);
+                    gameLoop(playerResponse);
+                }
+            }
         }
-        vw.gameViewEnding();
     }
 
     private void gameCurrentRules() {
@@ -69,4 +78,9 @@ class Controller {
             gameRoundCheck();
         }
     }
+
+    private void updatePlayerStats() {
+
+    }
+
 }

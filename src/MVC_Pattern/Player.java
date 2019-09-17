@@ -14,6 +14,7 @@ class Player {
     private float winRate;
     private int numOfWins;
     private int numOfLosses;
+    private int numOfTies;
 
     Player(String playerName) {
         this.playerName = playerName;
@@ -21,41 +22,54 @@ class Player {
         winRate = 0;
         numOfLosses = 0;
         numOfWins = 0;
+        numOfTies = 0;
     }
 
-    String getPlayerName() {
+    public String getPlayerName() {
         return playerName;
     }
 
-    int getPlayerHighScore() {
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getPlayerHighScore() {
         return playerHighScore;
     }
 
-    void setPlayerHighScore(int playerHighScore) {
+    public void setPlayerHighScore(int playerHighScore) {
         this.playerHighScore = playerHighScore;
     }
 
-    float getWinRate() {
+    public float getWinRate() {
         return winRate;
     }
 
-    void setWinRate(float winRate) {
+    public void setWinRate(float winRate) {
         this.winRate = winRate;
     }
 
-    int getNumOfWins() {
+    public int getNumOfWins() {
         return numOfWins;
     }
 
-    void setNumOfWins(int numOfWins) {
+    public void setNumOfWins(int numOfWins) {
         this.numOfWins = numOfWins;
     }
 
-    int getNumOfLosses() {
+    public int getNumOfLosses() {
         return numOfLosses;
     }
 
-    void setNumOfLosses(int numOfLosses) {
+    public void setNumOfLosses(int numOfLosses) {
         this.numOfLosses = numOfLosses;
+    }
+
+    public int getNumOfTies() {
+        return numOfTies;
+    }
+
+    public void setNumOfTies(int numOfTies) {
+        this.numOfTies = numOfTies;
     }
 }
