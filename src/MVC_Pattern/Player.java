@@ -15,22 +15,25 @@ class Player {
     private int numOfWins;
     private int numOfLosses;
     private int numOfTies;
+    private int numOfTotalMatches;
 
     Player(String playerName) {
         this.playerName = playerName;
+        numOfTotalMatches = 0;
         playerHighScore = 0;
         winRate = 0;
         numOfLosses = 0;
         numOfWins = 0;
         numOfTies = 0;
+
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void incrementTotalMatches() {
+        this.numOfTotalMatches = numOfTotalMatches + 1;
     }
 
     public int getPlayerHighScore() {
@@ -46,30 +49,31 @@ class Player {
     }
 
     public void setWinRate(float winRate) {
-        this.winRate = winRate;
+        //TODO: BUG divide by zero error
+        this.winRate = numOfTotalMatches / numOfLosses;
     }
 
     public int getNumOfWins() {
         return numOfWins;
     }
 
-    public void setNumOfWins(int numOfWins) {
-        this.numOfWins = numOfWins;
+    public void incrementWinStat() {
+        this.numOfWins = numOfWins + 1;
     }
 
     public int getNumOfLosses() {
         return numOfLosses;
     }
 
-    public void setNumOfLosses(int numOfLosses) {
-        this.numOfLosses = numOfLosses;
+    public void incrementLoseStat() {
+        this.numOfLosses = numOfLosses + 1;
     }
 
     public int getNumOfTies() {
         return numOfTies;
     }
 
-    public void setNumOfTies(int numOfTies) {
-        this.numOfTies = numOfTies;
+    public void incrementTieStat() {
+        this.numOfTies = numOfTies + 1;
     }
 }

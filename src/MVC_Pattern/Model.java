@@ -18,9 +18,13 @@ class Model {
     final private GamePiece paper = new GamePiece("paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("scissors", "paper", "rock");
     private HashMap<String, Player> playerMap = new HashMap<>();
+    private Player currentActivePlayer;
     private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
+    private String matchResult = "error ifs not hit";
 
     Model() {
+        Player cpu = new Player("Cpu");
+        playerMap.put("Cpu", cpu);
         activeGamePieceSet.add(rock);
         activeGamePieceSet.add(paper);
         activeGamePieceSet.add(scissors);
@@ -29,6 +33,10 @@ class Model {
     void createPlayer(String playerName) {
         Player player = new Player(playerName);
         playerMap.put(playerName, player);
+    }
+
+    void setCurrentActivePlayer(String playerName){
+        currentActivePlayer = playerMap.get(playerName);
     }
 
     int numOfGamePieces() {
@@ -42,20 +50,36 @@ class Model {
         return cpuChosenPiece.getPieceName();
     }
 
-    //TODO: migrate this function to controller
     String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
-        GamePiece p1GamePiece = toGamePiece(p1SelectedPiece);
-        GamePiece p2GamePiece = toGamePiece(p1SelectedPiece);
-        //TODO: fix if statements not getting hit
-        String matchResult = "error??? didnt hit any if's";
-        if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2SelectedPiece)) {
-            matchResult = "p1Winner";
-        } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1SelectedPiece)) {
-            matchResult = "p2Winner";
+        GamePiece p1GamePiece =  toGamePiece(p1SelectedPiece);
+        GamePiece p2GamePiece =  toGamePiece(p2SelectedPiece);
+        //TODO: BUG fix if statements not getting hit
+        if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2GamePiece.getPieceName()) &&
+                p2GamePiece.getLosesTo().equalsIgnoreCase(p1GamePiece.getPieceName())) {
+            matchResult = "Player one Winner!";
+        } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1GamePiece.getPieceName()) &&
+                   p1GamePiece.getLosesTo().equalsIgnoreCase(p2GamePiece.getPieceName())){
+            matchResult = "Player two Winner!";
         } else if (p1SelectedPiece.equalsIgnoreCase(p2SelectedPiece)) {
-            matchResult = "tie";
+            matchResult = "Game is a Tie!";
         }
         return matchResult;
+    }
+
+    void updatePlayerStats() {
+        Player cpu = playerMap.get("Cpu");
+        currentActivePlayer.incrementTotalMatches();
+        cpu.incrementTotalMatches();
+        if(matchResult.equalsIgnoreCase("Player one Winner!")){
+            currentActivePlayer.incrementWinStat();
+            cpu.incrementLoseStat();
+        } else if(matchResult.equalsIgnoreCase("Player two Winner!")){
+            cpu.incrementWinStat();
+            currentActivePlayer.incrementLoseStat();
+        } else if (matchResult.equalsIgnoreCase("Game is a Tie!")){
+            currentActivePlayer.incrementTieStat();
+            cpu.incrementTieStat();
+        }
     }
 
     boolean containsPiece(String playerSelectedPiece) {

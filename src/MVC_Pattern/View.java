@@ -34,7 +34,7 @@ class View {
         return inputScanner.nextLine().toLowerCase();
     }
 
-    void incorrectViewResponse(String incorrectResponse) {
+    void incorrectPlayerResponse(String incorrectResponse) {
         System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
     }
 
@@ -45,43 +45,48 @@ class View {
         return playerHandle;
     }
 
-    void gameViewStatus(int numOfGamePieces, String gamePieces) {
+    void displayGameStatus(int numOfGamePieces, String gamePieces) {
         System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
                 "they are: " + gamePieces);
     }
 
-    void gameViewRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
-        System.out.println("The rules for these pieces follow:\n" + " ");
-        System.out.println("RULES");
+    void displayRules(String gamePieces, String gamePieceWinRules, String gamePieceLoseRules) {
+        System.out.println("The rules for these pieces follow:\n");
+        System.out.println("RULES read from top to bottom");
         System.out.println("Game Pieces: " + gamePieces);
         System.out.println("Wins against: " + gamePieceWinRules);
         System.out.println("Loses against: " + gamePieceLoseRules + "\n");
 
     }
 
-    String getPlayePieceChoice() {
+    String getPlayerPieceChoice() {
         System.out.print("Please enter your game piece choice: ");
         return inputScanner.nextLine().toLowerCase();
     }
 
-    void gameViewSelectWinner() {
-        System.out.println("The winner is: " + "winnername");
+    void displayPlayerChoices(String p1Piece, String p2Piece){
+        System.out.println("P1  chose: " + p1Piece);
+        System.out.println("Cpu chose: " + p2Piece);
     }
 
-    void gameViewSelectLoser() {
-        System.out.println("The loser is: " + "losername");
+    void viewDisplayMatchResults(String matchResults){
+        System.out.println("The match result is: " + matchResults);
     }
 
-    String gameViewContinueGame() {
+    void displayPlayerStats(){
+
+    }
+
+    String viewContinueGame() {
         System.out.print("Would you like to keep playing?(Yes/No): ");
         return inputScanner.nextLine().toLowerCase();
     }
 
-    void gameViewJustLooking() {
+    void viewJustLooking() {
         System.out.println("Thank you for checking out my game!");
     }
 
-    void gameViewEnding() {
+    void viewEnding() {
         System.out.println("Thank you for playing!");
     }
 }
