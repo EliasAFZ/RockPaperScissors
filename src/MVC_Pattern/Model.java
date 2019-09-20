@@ -33,8 +33,7 @@ class Model {
     private String matchResult = "error ifs not hit";
 
     Model() {
-        Player cpu = new Player("Cpu");
-        playerMap.put("Cpu", cpu);
+        createPlayer("Cpu");
         loadGamePieceSet();
     }
 
@@ -42,6 +41,8 @@ class Model {
         Player player = new Player(playerName);
         playerMap.put(playerName, player);
     }
+
+
 
     void setCurrentActivePlayer(String playerName){
         currentActivePlayer = playerMap.get(playerName);
@@ -79,10 +80,10 @@ class Model {
         //TODO: BUG fix if statements not getting hit
         if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2GamePiece.getPieceName()) &&
                 p2GamePiece.getLosesTo().equalsIgnoreCase(p1GamePiece.getPieceName())) {
-            matchResult = "Player one Winner!";
+            matchResult = "Player one Wins!";
         } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1GamePiece.getPieceName()) &&
                    p1GamePiece.getLosesTo().equalsIgnoreCase(p2GamePiece.getPieceName())){
-            matchResult = "Player two Winner!";
+            matchResult = "Player two Wins!";
         } else if (p1SelectedPiece.equalsIgnoreCase(p2SelectedPiece)) {
             matchResult = "Game is a Tie!";
         }
@@ -94,11 +95,11 @@ class Model {
         Player cpu = playerMap.get("Cpu");
         currentActivePlayer.incrementTotalMatches();
         cpu.incrementTotalMatches();
-        if(matchResult.equalsIgnoreCase("Player one Winner!")){
+        if(matchResult.equalsIgnoreCase("Player one Wins!")){
             currentActivePlayer.incrementWinStat();
             cpu.incrementLoseStat();
             switchGamePieceSet();
-        } else if(matchResult.equalsIgnoreCase("Player two Winner!")){
+        } else if(matchResult.equalsIgnoreCase("Player two Wins!")){
             cpu.incrementWinStat();
             currentActivePlayer.incrementLoseStat();
         } else if (matchResult.equalsIgnoreCase("Game is a Tie!")){

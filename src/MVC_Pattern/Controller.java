@@ -30,7 +30,7 @@ class Controller {
                 String playerName = vw.retrievePlayerName();
                 ml.createPlayer(playerName);
                 ml.setCurrentActivePlayer(playerName);
-                gameLoop(playerResponse);
+                gameLoop();
             }
             case "no" -> vw.viewJustLooking();
             default -> {
@@ -40,14 +40,12 @@ class Controller {
         }
     }
 
-    private void gameLoop(String playerResponse) {
-        while (playerResponse.equalsIgnoreCase("yes") || playerResponse.equalsIgnoreCase("1")) {
+    private void gameLoop() {
             gameCurrentRules();
             gameRoundCheck();
             //switch set method here
             ml.updatePlayerStats();
-            vw.endDisplayMenu();
-        }
+            endMenu();
     }
 
     private void gameCurrentRules() {
@@ -70,29 +68,33 @@ class Controller {
         }
     }
 
-    private void endMenu(int playerResponse){
-        int endChoice = vw.endDisplayMenu();
+    private void endMenu(){
+        String endChoice = vw.endDisplayMenu().toLowerCase();
         //TODO: BUG on incorrect response after 2nd incorrect response app ends
         switch (endChoice) {
-            case 1 -> {
+            case "1" -> {
                 //play again
-                gameLoop(String.valueOf(endChoice));
+                gameLoop();
             }
-            case 2 -> {
+            case "2" -> {
                 //switch players
+                String playerName = vw.retrievePlayerName();
+                ml.createPlayer(playerName);
+                ml.setCurrentActivePlayer(playerName);
+                endMenu();
             }
-            case 3 -> {
+            case "3" -> {
                 //display high scores
+                vw.displayCurrentPlayerStats();
+                endMenu();
             }
-            case 4 -> {
+            case "4" -> {
                 //end game
                 vw.viewEnding();
             }
             default -> {
-                vw.incorrectPlayerResponse(String.valueOf(endChoice));
-                endMenu(endChoice);
-                //playerResponse = vw.viewContinueGame();
-                //gameLoop(playerResponse);
+                vw.incorrectPlayerResponse(endChoice);
+                endMenu();
             }
         }
     }

@@ -20,13 +20,16 @@ class View {
     }
 
     private void welcomeDisplay() {
-        String welcomeMessage = "\nWelcome to a weird game of Rock/Paper/Scissors/? \n\n" +
+        String welcomeMessage = "Welcome to a weird game of Rock/Paper/Scissors/?\n" +
                 "Game description: So this game is based on the original rules that rock beats \n" +
                 "scissor, paper beats rock, scissors beats paper, etc. However in this version \n" +
                 "you may switch to a new set of pieces each time you win! So for example lets say \n" +
                 "currently rock, paper, and scissors are in play. You can switch them out for fire, \n" +
-                "water, and air. You can also have a combined combination of the previous mention sets. \n";
+                "water, and air. You can switch to whatever possible game sets are available. \n" +
+                "You can switch to a new player and check there respective scores at the end.";
+        lineSeparatorWelcomeDisplay();
         System.out.println(welcomeMessage);
+        lineSeparatorWelcomeDisplay();
     }
 
     String startGameQuestion() {
@@ -36,17 +39,20 @@ class View {
 
     void incorrectPlayerResponse(String incorrectResponse) {
         System.out.println(incorrectResponse + " is an invalid response. Please enter a valid response!");
+        lineSeparator();
     }
 
     String retrievePlayerName() {
+        lineSeparator();
         System.out.print("Please enter your gaming handle: ");
         String playerHandle = inputScanner.nextLine();
-        System.out.println("Hello there " + playerHandle + "! \n");
+        System.out.println("Hello there " + playerHandle + "!");
         return playerHandle;
     }
 
     void displayGameStatus(int numOfGamePieces, String gamePieces) {
-        System.out.println("Alright so currently their are " + numOfGamePieces + " game pieces, \n" +
+        lineSeparator();
+        System.out.println("\nCurrently their are " + numOfGamePieces + " game pieces, \n" +
                 "they are: " + gamePieces);
     }
 
@@ -56,7 +62,7 @@ class View {
         System.out.println("Game Pieces: " + gamePieces);
         System.out.println("Wins against: " + gamePieceWinRules);
         System.out.println("Loses against: " + gamePieceLoseRules + "\n");
-
+        lineSeparator();
     }
 
     String getPlayerPieceChoice() {
@@ -65,6 +71,7 @@ class View {
     }
 
     void displayPlayerChoices(String p1Piece, String p2Piece){
+        lineSeparator();
         System.out.println("P1  chose: " + p1Piece);
         System.out.println("Cpu chose: " + p2Piece);
     }
@@ -73,29 +80,40 @@ class View {
         System.out.println("The match result is: " + matchResults);
     }
 
-    void displayPlayerStats(){
-
+    void displayCurrentPlayerStats(){
+        System.out.println("stats are bla bla");
     }
 
     void switchGamePieceSet(){
         System.out.println("Congrats on winning now you can switch out to another game piece set!");
     }
 
-    int endDisplayMenu(){
-        System.out.println("\nEND MENU: Enter the correlating number for your choice");
+    String endDisplayMenu(){
+        lineSeparator();
+        System.out.println("END MENU: Enter the correlating number to your choice");
         System.out.println("1: keep playing?");
         System.out.println("2: Switch players?");
         System.out.println("3: Display scores?");
         System.out.println("4: Exit Game");
         System.out.print("Enter option: ");
-        return inputScanner.nextInt();
+        return inputScanner.nextLine();
     }
 
     void viewJustLooking() {
+        lineSeparator();
         System.out.println("Thank you for checking out my game!");
     }
 
     void viewEnding() {
         System.out.println("Thank you for playing!");
     }
+
+    void lineSeparator(){
+        System.out.println("------------------------------------------------------------");
+    }
+
+    void lineSeparatorWelcomeDisplay(){
+        System.out.println("--------------------------------------------------------------------------------------");
+    }
+
 }
