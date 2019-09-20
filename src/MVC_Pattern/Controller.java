@@ -27,8 +27,7 @@ class Controller {
         // Switch expression new in java 12
         switch (playerResponse.toLowerCase()) {
             case "yes" -> {
-                String playerName = "";
-                playerName = vw.retrievePlayerName();
+                String playerName = vw.retrievePlayerName();
                 ml.createPlayer(playerName);
                 ml.setCurrentActivePlayer(playerName);
                 gameLoop(playerResponse);
@@ -42,35 +41,12 @@ class Controller {
     }
 
     private void gameLoop(String playerResponse) {
-        while (playerResponse.equalsIgnoreCase("yes")) {
+        while (playerResponse.equalsIgnoreCase("yes") || playerResponse.equalsIgnoreCase("1")) {
             gameCurrentRules();
             gameRoundCheck();
+            //switch set method here
             ml.updatePlayerStats();
-            playerResponse = vw.viewContinueGame();
-
-            //TODO: BUG on incorrect response after 2nd incorrect response app ends
-            if(playerResponse.equalsIgnoreCase("yes")){
-                continue;
-            } else if(playerResponse.equalsIgnoreCase("no")){
-                vw.viewEnding();
-            } else {
-                vw.incorrectPlayerResponse(playerResponse);
-                playerResponse = vw.viewContinueGame();
-                gameLoop(playerResponse);
-            }
-
-            /**switch (playerResponse.toLowerCase()) {
-                case "yes" -> {
-                    continue;
-                }
-                case "no" -> vw.gameViewEnding();
-                default -> {
-                    vw.incorrectViewResponse(playerResponse);
-                    playerResponse = vw.gameViewContinueGame();
-                    gameLoop(playerResponse);
-                }
-            }**/
-
+            vw.endDisplayMenu();
         }
     }
 
@@ -84,14 +60,40 @@ class Controller {
     private void gameRoundCheck() {
         String p1SelectedPiece = vw.getPlayerPieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
-        String matchResults = "";
         if (ml.containsPiece(p1SelectedPiece)) {
             vw.displayPlayerChoices(p1SelectedPiece, p2SelectedPiece);
-            matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
+            String matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece)
             vw.viewDisplayMatchResults(matchResults);
         } else {
             vw.incorrectPlayerResponse(p1SelectedPiece);
             gameRoundCheck();
+        }
+    }
+
+    private void endMenu(int playerResponse){
+        int endChoice = vw.endDisplayMenu();
+        //TODO: BUG on incorrect response after 2nd incorrect response app ends
+        switch (endChoice) {
+            case 1 -> {
+                //play again
+                gameLoop(String.valueOf(endChoice));
+            }
+            case 2 -> {
+                //switch players
+            }
+            case 3 -> {
+                //display high scores
+            }
+            case 4 -> {
+                //end game
+                vw.viewEnding();
+            }
+            default -> {
+                vw.incorrectPlayerResponse(String.valueOf(endChoice));
+                endMenu(endChoice);
+                //playerResponse = vw.viewContinueGame();
+                //gameLoop(playerResponse);
+            }
         }
     }
 

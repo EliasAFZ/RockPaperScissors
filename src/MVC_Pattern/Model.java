@@ -1,5 +1,6 @@
 package MVC_Pattern;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -17,17 +18,24 @@ class Model {
     final private GamePiece rock = new GamePiece("rock", "scissors", "paper");
     final private GamePiece paper = new GamePiece("paper", "rock", "scissors");
     final private GamePiece scissors = new GamePiece("scissors", "paper", "rock");
+    final private GamePiece[] gamePieceSet1 = new GamePiece[]{rock, paper, scissors};
+
+    final private GamePiece fire = new GamePiece("fire", "air", "water");
+    final private GamePiece water = new GamePiece("water", "fire", "air");
+    final private GamePiece air = new GamePiece("air", "water", "fire");
+    final private GamePiece[] gamePieceSet2 = new GamePiece[]{fire, water, air};
+
+    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
     private HashMap<String, Player> playerMap = new HashMap<>();
     private Player currentActivePlayer;
-    private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
+
+    //TODO: temp value
     private String matchResult = "error ifs not hit";
 
     Model() {
         Player cpu = new Player("Cpu");
         playerMap.put("Cpu", cpu);
-        activeGamePieceSet.add(rock);
-        activeGamePieceSet.add(paper);
-        activeGamePieceSet.add(scissors);
+        loadGamePieceSet();
     }
 
     void createPlayer(String playerName) {
@@ -37,6 +45,21 @@ class Model {
 
     void setCurrentActivePlayer(String playerName){
         currentActivePlayer = playerMap.get(playerName);
+    }
+
+    void loadGamePieceSet(){
+        // if current arr list is empty load the default set which is set 1
+        if(activeGamePieceSet.isEmpty()){
+            for(GamePiece gp : gamePieceSet1){
+                activeGamePieceSet.add(gp);
+            }
+        }
+    }
+
+    void loadGamePieceSet(GamePiece[] gamePieceArray){
+            for(GamePiece gp : gamePieceSet1){
+                activeGamePieceSet.add(gp);
+            }
     }
 
     int numOfGamePieces() {
@@ -66,6 +89,7 @@ class Model {
         return matchResult;
     }
 
+    //TODO: String Literals need to be changed to enums for type errors and readability
     void updatePlayerStats() {
         Player cpu = playerMap.get("Cpu");
         currentActivePlayer.incrementTotalMatches();
@@ -73,6 +97,7 @@ class Model {
         if(matchResult.equalsIgnoreCase("Player one Winner!")){
             currentActivePlayer.incrementWinStat();
             cpu.incrementLoseStat();
+            switchGamePieceSet();
         } else if(matchResult.equalsIgnoreCase("Player two Winner!")){
             cpu.incrementWinStat();
             currentActivePlayer.incrementLoseStat();
@@ -80,6 +105,10 @@ class Model {
             currentActivePlayer.incrementTieStat();
             cpu.incrementTieStat();
         }
+    }
+
+    void switchGamePieceSet(){
+
     }
 
     boolean containsPiece(String playerSelectedPiece) {

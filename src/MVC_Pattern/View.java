@@ -25,7 +25,7 @@ class View {
                 "scissor, paper beats rock, scissors beats paper, etc. However in this version \n" +
                 "you may switch to a new set of pieces each time you win! So for example lets say \n" +
                 "currently rock, paper, and scissors are in play. You can switch them out for fire, \n" +
-                "water, and air. You can also have a combination of whatever set pieces are available. \n";
+                "water, and air. You can also have a combined combination of the previous mention sets. \n";
         System.out.println(welcomeMessage);
     }
 
@@ -77,9 +77,18 @@ class View {
 
     }
 
-    String viewContinueGame() {
-        System.out.print("Would you like to keep playing?(Yes/No): ");
-        return inputScanner.nextLine().toLowerCase();
+    void switchGamePieceSet(){
+        System.out.println("Congrats on winning now you can switch out to another game piece set!");
+    }
+
+    int endDisplayMenu(){
+        System.out.println("\nEND MENU: Enter the correlating number for your choice");
+        System.out.println("1: keep playing?");
+        System.out.println("2: Switch players?");
+        System.out.println("3: Display scores?");
+        System.out.println("4: Exit Game");
+        System.out.print("Enter option: ");
+        return inputScanner.nextInt();
     }
 
     void viewJustLooking() {
