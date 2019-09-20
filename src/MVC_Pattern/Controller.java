@@ -62,7 +62,7 @@ class Controller {
         String p2SelectedPiece = ml.getCpuPieceChoice();
         if (ml.containsPiece(p1SelectedPiece)) {
             vw.displayPlayerChoices(p1SelectedPiece, p2SelectedPiece);
-            String matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece)
+            String matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
             vw.viewDisplayMatchResults(matchResults);
         } else {
             vw.incorrectPlayerResponse(p1SelectedPiece);
