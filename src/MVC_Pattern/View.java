@@ -80,8 +80,32 @@ class View {
         System.out.println("The match result is: " + matchResults);
     }
 
-    void displayCurrentPlayerStats(){
-        System.out.println("stats are bla bla");
+    void displayCurrentPlayerStats(String playerName,
+                                   int highScore,
+                                   int totalMatches,
+                                   int winRate,
+                                   int wins,
+                                   int losses,
+                                   int ties){
+        lineSeparator();
+        System.out.println("Player Name: " + playerName);
+        System.out.println("High Score: " + highScore);
+        System.out.println("Total Matches: " + totalMatches);
+        System.out.println("Win Rate: " + winRate);
+        System.out.println("Wins: " + wins);
+        System.out.println("Losses: " + losses);
+        System.out.println("Ties: " + ties);
+    }
+
+    void displayCurrentPlayerStats(Player player){
+        lineSeparator();
+        System.out.println("Player Name: " + player.getPlayerName());
+        System.out.println("High Score: " + player.getPlayerHighScore());
+        System.out.println("Total Matches: " + player.getTotalMatches());
+        System.out.println("Win Rate: " + player.getWinRate());
+        System.out.println("Wins: " + player.getNumOfWins());
+        System.out.println("Losses: " + player.getNumOfLosses());
+        System.out.println("Ties: " + player.getNumOfTies());
     }
 
     void switchGamePieceSet(){
@@ -92,11 +116,19 @@ class View {
         lineSeparator();
         System.out.println("END MENU: Enter the correlating number to your choice");
         System.out.println("1: keep playing?");
-        System.out.println("2: Switch players?");
+        System.out.println("2: Switch to new player?");
         System.out.println("3: Display scores?");
         System.out.println("4: Exit Game");
         System.out.print("Enter option: ");
         return inputScanner.nextLine();
+    }
+
+    void nameAlreadyExistsDisplay(String playerInput){
+        System.out.println(playerInput + " already exists please enter another name!");
+    }
+
+    void blankStringDisplay(){
+        System.out.println("You entered an empty string please enter something!");
     }
 
     void viewJustLooking() {
@@ -105,7 +137,9 @@ class View {
     }
 
     void viewEnding() {
+        lineSeparator();
         System.out.println("Thank you for playing!");
+        lineSeparator();
     }
 
     void lineSeparator(){

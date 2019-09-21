@@ -37,12 +37,15 @@ class Model {
         loadGamePieceSet();
     }
 
-    void createPlayer(String playerName) {
-        Player player = new Player(playerName);
-        playerMap.put(playerName, player);
+    //TODO: complete blank check on controller and handle blank condition
+    boolean createPlayer(String playerName) {
+        if(!playerName.isBlank()) {
+            Player player = new Player(playerName);
+            playerMap.put(playerName, player);
+            return true;
+        }
+        return false;
     }
-
-
 
     void setCurrentActivePlayer(String playerName){
         currentActivePlayer = playerMap.get(playerName);
@@ -52,15 +55,10 @@ class Model {
         // if current arr list is empty load the default set which is set 1
         if(activeGamePieceSet.isEmpty()){
             for(GamePiece gp : gamePieceSet1){
+                // can be replaced with .addall function
                 activeGamePieceSet.add(gp);
             }
         }
-    }
-
-    void loadGamePieceSet(GamePiece[] gamePieceArray){
-            for(GamePiece gp : gamePieceSet1){
-                activeGamePieceSet.add(gp);
-            }
     }
 
     int numOfGamePieces() {
@@ -112,6 +110,22 @@ class Model {
 
     }
 
+    //TODO: better way?
+    Player getPlayerStats(){
+        Player currentPlayer = null;
+        for(String key:  playerMap.keySet()){
+            currentPlayer = playerMap.get(key);
+            currentPlayer.getPlayerName();
+            currentPlayer.getPlayerHighScore();
+            currentPlayer.getTotalMatches();
+            currentPlayer.getWinRate();
+            currentPlayer.getNumOfWins();
+            currentPlayer.getNumOfLosses();
+            currentPlayer.getNumOfTies();
+        }
+        return currentPlayer;
+    }
+
     boolean containsPiece(String playerSelectedPiece) {
         for (GamePiece gamePiece : activeGamePieceSet) {
             if (playerSelectedPiece.equalsIgnoreCase(gamePiece.getPieceName())) {
@@ -121,13 +135,24 @@ class Model {
         return false;
     }
 
-    GamePiece toGamePiece(String gamePieceName) {
-        for (GamePiece currentPiece : activeGamePieceSet) {
-            if (currentPiece.getPieceName().equalsIgnoreCase(gamePieceName)) {
-                return currentPiece;
+    boolean containsPlayer(String playerNameInput) {
+        for (String currentPlayerFromMap : playerMap.keySet()) {
+            if (currentPlayerFromMap.equalsIgnoreCase(playerNameInput)) {
+                return true;
             }
         }
-        return null;
+        return false;
+    }
+
+    GamePiece toGamePiece(String gamePieceName) {
+        GamePiece current = null;
+        for (GamePiece currentPiece : activeGamePieceSet) {
+            if (currentPiece.getPieceName().equalsIgnoreCase(gamePieceName)) {
+                current = currentPiece;
+                break;
+            }
+        }
+        return current;
     }
 
     String stringGamePieces(Controller.Condition condition) {

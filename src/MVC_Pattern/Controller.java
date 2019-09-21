@@ -43,7 +43,7 @@ class Controller {
     private void gameLoop() {
             gameCurrentRules();
             gameRoundCheck();
-            //switch set method here
+            ml.switchGamePieceSet();
             ml.updatePlayerStats();
             endMenu();
     }
@@ -79,13 +79,22 @@ class Controller {
             case "2" -> {
                 //switch players
                 String playerName = vw.retrievePlayerName();
-                ml.createPlayer(playerName);
-                ml.setCurrentActivePlayer(playerName);
+                boolean flag = false;
+                while(!flag){
+                    if(!ml.containsPlayer(playerName)){
+                        ml.createPlayer(playerName);
+                        ml.setCurrentActivePlayer(playerName);
+                        flag = true;
+                    }else{
+                        vw.nameAlreadyExistsDisplay(playerName);
+                        playerName = vw.retrievePlayerName();
+                    }
+                }
                 endMenu();
             }
             case "3" -> {
                 //display high scores
-                vw.displayCurrentPlayerStats();
+                vw.displayCurrentPlayerStats(ml.getPlayerStats());
                 endMenu();
             }
             case "4" -> {
