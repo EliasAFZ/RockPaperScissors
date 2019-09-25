@@ -2,12 +2,12 @@ package MVC_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 8/20/2019
+ * Date: 9/20/2019
  * Description:
  *
  * @Author Elias Afzalzada
  */
-class Player {
+public class Player {
 
     private String playerName;
     private int playerHighScore;

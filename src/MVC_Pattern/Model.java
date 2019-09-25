@@ -1,19 +1,18 @@
 package MVC_Pattern;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 9/3/2019
+ * Date: 9/20/2019
  * Description:
  *
  * @Author Elias Afzalzada
  */
 
-class Model {
+public class Model {
 
     final private GamePiece rock = new GamePiece("rock", "scissors", "paper");
     final private GamePiece paper = new GamePiece("paper", "rock", "scissors");
@@ -37,52 +36,54 @@ class Model {
         loadGamePieceSet();
     }
 
-    void createPlayer(String playerName) {
-        Player player = new Player(playerName);
-        playerMap.put(playerName, player);
+    public void createPlayer(String playerName) {
+            Player player = new Player(playerName);
+            playerMap.put(playerName, player);
     }
 
+    public boolean containsNameOrIsBlank(String playerName){
+        return (playerMap.containsKey(playerName) || playerName.isBlank());
+    }
 
-
-    void setCurrentActivePlayer(String playerName){
+    public void setCurrentActivePlayer(String playerName) {
         currentActivePlayer = playerMap.get(playerName);
     }
 
-    void loadGamePieceSet(){
+    public void loadGamePieceSet() {
         // if current arr list is empty load the default set which is set 1
-        if(activeGamePieceSet.isEmpty()){
-            for(GamePiece gp : gamePieceSet1){
+        if (activeGamePieceSet.isEmpty()) {
+            for(GamePiece gp : gamePieceSet1) {
                 activeGamePieceSet.add(gp);
             }
         }
     }
 
-    void loadGamePieceSet(GamePiece[] gamePieceArray){
-            for(GamePiece gp : gamePieceSet1){
-                activeGamePieceSet.add(gp);
-            }
+    public void loadGamePieceSet(GamePiece[] gamePieceArray) {
+        for (GamePiece gp : gamePieceSet1) {
+            activeGamePieceSet.add(gp);
+        }
     }
 
-    int numOfGamePieces() {
+    public int numOfGamePieces() {
         return activeGamePieceSet.size();
     }
 
-    String getCpuPieceChoice() {
+    public String getCpuPieceChoice() {
         Random randGen = new Random();
         int randPieceIndex = randGen.nextInt(activeGamePieceSet.size());
         GamePiece cpuChosenPiece = activeGamePieceSet.get(randPieceIndex);
         return cpuChosenPiece.getPieceName();
     }
 
-    String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
-        GamePiece p1GamePiece =  toGamePiece(p1SelectedPiece);
-        GamePiece p2GamePiece =  toGamePiece(p2SelectedPiece);
+    public String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
+        GamePiece p1GamePiece = toGamePiece(p1SelectedPiece);
+        GamePiece p2GamePiece = toGamePiece(p2SelectedPiece);
         //TODO: BUG fix if statements not getting hit
         if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2GamePiece.getPieceName()) &&
                 p2GamePiece.getLosesTo().equalsIgnoreCase(p1GamePiece.getPieceName())) {
             matchResult = "Player one Wins!";
         } else if (p2GamePiece.getWinsAgainst().equalsIgnoreCase(p1GamePiece.getPieceName()) &&
-                   p1GamePiece.getLosesTo().equalsIgnoreCase(p2GamePiece.getPieceName())){
+                p1GamePiece.getLosesTo().equalsIgnoreCase(p2GamePiece.getPieceName())) {
             matchResult = "Player two Wins!";
         } else if (p1SelectedPiece.equalsIgnoreCase(p2SelectedPiece)) {
             matchResult = "Game is a Tie!";
@@ -91,28 +92,28 @@ class Model {
     }
 
     //TODO: String Literals need to be changed to enums for type errors and readability
-    void updatePlayerStats() {
+    public void updatePlayerStats() {
         Player cpu = playerMap.get("Cpu");
         currentActivePlayer.incrementTotalMatches();
         cpu.incrementTotalMatches();
-        if(matchResult.equalsIgnoreCase("Player one Wins!")){
+        if (matchResult.equalsIgnoreCase("Player one Wins!")) {
             currentActivePlayer.incrementWinStat();
             cpu.incrementLoseStat();
             switchGamePieceSet();
-        } else if(matchResult.equalsIgnoreCase("Player two Wins!")){
+        } else if (matchResult.equalsIgnoreCase("Player two Wins!")) {
             cpu.incrementWinStat();
             currentActivePlayer.incrementLoseStat();
-        } else if (matchResult.equalsIgnoreCase("Game is a Tie!")){
+        } else if (matchResult.equalsIgnoreCase("Game is a Tie!")) {
             currentActivePlayer.incrementTieStat();
             cpu.incrementTieStat();
         }
     }
 
-    void switchGamePieceSet(){
+    public void switchGamePieceSet() {
 
     }
 
-    boolean containsPiece(String playerSelectedPiece) {
+    public boolean containsPiece(String playerSelectedPiece) {
         for (GamePiece gamePiece : activeGamePieceSet) {
             if (playerSelectedPiece.equalsIgnoreCase(gamePiece.getPieceName())) {
                 return true;
@@ -121,7 +122,12 @@ class Model {
         return false;
     }
 
-    GamePiece toGamePiece(String gamePieceName) {
+    public Player getCurrentActivePlayer(){
+        return currentActivePlayer;
+    }
+
+    //TODO: returning null is bad possible other solution?
+    public GamePiece toGamePiece(String gamePieceName) {
         for (GamePiece currentPiece : activeGamePieceSet) {
             if (currentPiece.getPieceName().equalsIgnoreCase(gamePieceName)) {
                 return currentPiece;
@@ -130,25 +136,25 @@ class Model {
         return null;
     }
 
-    String stringGamePieces(Controller.Condition condition) {
-        String listOfPieces = "";
+    public String toStringListGamePieces(Controller.Condition condition) {
+        StringBuilder listOfPieces = new StringBuilder();
         switch (condition) {
             case names -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
-                    listOfPieces += currentPiece.getPieceName() + " ";
+                    listOfPieces.append(currentPiece.getPieceName() + " ");
                 }
             }
             case winsagainst -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
-                    listOfPieces += currentPiece.getWinsAgainst() + " ";
+                    listOfPieces.append(currentPiece.getWinsAgainst() + " ");
                 }
             }
             case losesagainst -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
-                    listOfPieces += currentPiece.getLosesTo() + " ";
+                    listOfPieces.append(currentPiece.getLosesTo() + " ");
                 }
             }
         }
-        return listOfPieces;
+        return listOfPieces.toString();
     }
 }

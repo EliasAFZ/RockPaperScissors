@@ -2,12 +2,12 @@ package MVC_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 8/20/2019
+ * Date: 9/20/2019
  * Description:
  *
  * @Author Elias Afzalzada
  */
-class GamePiece {
+public class GamePiece {
 
     private String pieceName;
     private String winsAgainst;
@@ -19,15 +19,15 @@ class GamePiece {
         this.losesTo = losesTo;
     }
 
-    String getPieceName() {
+    public String getPieceName() {
         return pieceName;
     }
 
-    String getWinsAgainst() {
+    public String getWinsAgainst() {
         return winsAgainst;
     }
 
-    String getLosesTo() {
+    public String getLosesTo() {
         return losesTo;
     }
 }

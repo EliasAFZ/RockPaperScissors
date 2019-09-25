@@ -2,7 +2,7 @@ package MVC_Pattern;
 
 /**
  * Project Name: RockPaperScissorsGame
- * Date: 9/3/2019
+ * Date: 9/20/2019
  * Description:
  *
  * @Author Elias Afzalzada
@@ -18,48 +18,62 @@ class Controller {
     }
 
     //enum testing for type safety
-    enum Condition {
+    public enum Condition {
         names, winsagainst, losesagainst
     }
 
-    void startMenu() {
+
+    public void runStart() {
         String playerResponse = vw.startGameQuestion();
         // Switch expression new in java 12
         switch (playerResponse.toLowerCase()) {
             case "yes" -> {
-                String playerName = vw.retrievePlayerName();
-                ml.createPlayer(playerName);
-                ml.setCurrentActivePlayer(playerName);
+                createPlayer();
                 gameLoop();
             }
             case "no" -> vw.viewJustLooking();
             default -> {
                 vw.incorrectPlayerResponse(playerResponse);
-                startMenu();
+                runStart();
             }
         }
     }
 
-    private void gameLoop() {
-            gameCurrentRules();
-            gameRoundCheck();
-            //switch set method here
-            ml.updatePlayerStats();
-            endMenu();
+
+    private void createPlayer() {
+        String playerName = vw.retrievePlayerName();
+        if (!ml.containsNameOrIsBlank(playerName)) {
+            ml.createPlayer(playerName);
+            ml.setCurrentActivePlayer(playerName);
+        } else {
+            vw.incorrectPlayerName();
+            createPlayer();
+        }
     }
+
+
+    private void gameLoop() {
+        gameCurrentRules();
+        gameRoundCheck();
+        //switch set method here
+        ml.updatePlayerStats();
+        endMenu();
+    }
+
 
     private void gameCurrentRules() {
-        vw.displayGameStatus(ml.numOfGamePieces(), ml.stringGamePieces(Condition.names));
-        vw.displayRules(ml.stringGamePieces(Condition.names),
-                ml.stringGamePieces(Condition.winsagainst),
-                ml.stringGamePieces(Condition.losesagainst));
+        vw.displayGameStatus(ml.numOfGamePieces(), ml.toStringListGamePieces(Condition.names));
+        vw.displayRules(ml.toStringListGamePieces(Condition.names),
+                ml.toStringListGamePieces(Condition.winsagainst),
+                ml.toStringListGamePieces(Condition.losesagainst));
     }
 
+    //TODO: messy code needs more variables for readability, less functional style.
     private void gameRoundCheck() {
         String p1SelectedPiece = vw.getPlayerPieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
         if (ml.containsPiece(p1SelectedPiece)) {
-            vw.displayPlayerChoices(p1SelectedPiece, p2SelectedPiece);
+            vw.displayPlayerChoices(ml.getCurrentActivePlayer().getPlayerName(),p1SelectedPiece, p2SelectedPiece);
             String matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
             vw.viewDisplayMatchResults(matchResults);
         } else {
@@ -68,7 +82,7 @@ class Controller {
         }
     }
 
-    private void endMenu(){
+    private void endMenu() {
         String endChoice = vw.endDisplayMenu().toLowerCase();
         //TODO: BUG on incorrect response after 2nd incorrect response app ends
         switch (endChoice) {
@@ -77,10 +91,8 @@ class Controller {
                 gameLoop();
             }
             case "2" -> {
-                //switch players
-                String playerName = vw.retrievePlayerName();
-                ml.createPlayer(playerName);
-                ml.setCurrentActivePlayer(playerName);
+                //switch to new player
+                createPlayer();
                 endMenu();
             }
             case "3" -> {
@@ -98,5 +110,4 @@ class Controller {
             }
         }
     }
-
 }
