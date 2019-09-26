@@ -32,20 +32,32 @@ public class Player {
         return playerName;
     }
 
-    public void incrementTotalMatches() {
-        this.numOfTotalMatches = numOfTotalMatches + 1;
-    }
-
     public int getPlayerHighScore() {
         return playerHighScore;
     }
 
-    public void setPlayerHighScore(int playerHighScore) {
-        this.playerHighScore = playerHighScore;
+    public int getTotalMatches() {
+        return numOfTotalMatches;
     }
 
     public float getWinRate() {
         return winRate;
+    }
+
+    public int getNumOfWins() {
+        return numOfWins;
+    }
+
+    public int getNumOfLosses() {
+        return numOfLosses;
+    }
+
+    public int getNumOfTies() {
+        return numOfTies;
+    }
+
+    public void setPlayerHighScore(int playerHighScore) {
+        this.playerHighScore = playerHighScore;
     }
 
     public void setWinRate(float winRate) {
@@ -53,24 +65,16 @@ public class Player {
         this.winRate = numOfTotalMatches / numOfLosses;
     }
 
-    public int getNumOfWins() {
-        return numOfWins;
+    public void incrementTotalMatches() {
+        this.numOfTotalMatches = numOfTotalMatches + 1;
     }
 
     public void incrementWinStat() {
         this.numOfWins = numOfWins + 1;
     }
 
-    public int getNumOfLosses() {
-        return numOfLosses;
-    }
-
     public void incrementLoseStat() {
         this.numOfLosses = numOfLosses + 1;
-    }
-
-    public int getNumOfTies() {
-        return numOfTies;
     }
 
     public void incrementTieStat() {
