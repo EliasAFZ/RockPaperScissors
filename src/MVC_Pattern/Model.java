@@ -27,9 +27,7 @@ public class Model {
     private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
     private HashMap<String, Player> playerMap = new HashMap<>();
     private Player currentActivePlayer;
-
-    //TODO: temp value
-    private String matchResult = "error ifs not hit";
+    private String matchResult;
 
     Model() {
         createPlayer("Cpu");
@@ -58,11 +56,6 @@ public class Model {
         }
     }
 
-    public void loadGamePieceSet(GamePiece[] gamePieceArray) {
-        for (GamePiece gp : gamePieceSet1) {
-            activeGamePieceSet.add(gp);
-        }
-    }
 
     public int numOfGamePieces() {
         return activeGamePieceSet.size();
@@ -78,7 +71,6 @@ public class Model {
     public String retrieveMatchResults(String p1SelectedPiece, String p2SelectedPiece) {
         GamePiece p1GamePiece = toGamePiece(p1SelectedPiece);
         GamePiece p2GamePiece = toGamePiece(p2SelectedPiece);
-        //TODO: BUG fix if statements not getting hit
         if (p1GamePiece.getWinsAgainst().equalsIgnoreCase(p2GamePiece.getPieceName()) &&
                 p2GamePiece.getLosesTo().equalsIgnoreCase(p1GamePiece.getPieceName())) {
             matchResult = "Player one Wins!";
@@ -107,6 +99,8 @@ public class Model {
             currentActivePlayer.incrementTieStat();
             cpu.incrementTieStat();
         }
+        currentActivePlayer.setWinRate();
+        cpu.setWinRate();
     }
 
     public void switchGamePieceSet() {
@@ -157,4 +151,11 @@ public class Model {
         }
         return listOfPieces.toString();
     }
+
+    public Player[] getAllPlayers(){
+        Player[] playerArr = new Player[playerMap.size()];
+        playerMap.values().toArray(playerArr);
+        return playerArr;
+    }
+
 }

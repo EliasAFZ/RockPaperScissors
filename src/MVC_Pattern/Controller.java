@@ -7,7 +7,7 @@ package MVC_Pattern;
  *
  * @Author Elias Afzalzada
  */
-class Controller {
+public class Controller {
 
     private View vw;
     private Model ml;
@@ -84,7 +84,6 @@ class Controller {
 
     private void endMenu() {
         String endChoice = vw.endDisplayMenu().toLowerCase();
-        //TODO: BUG on incorrect response after 2nd incorrect response app ends
         switch (endChoice) {
             case "1" -> {
                 //play again
@@ -96,11 +95,16 @@ class Controller {
                 endMenu();
             }
             case "3" -> {
-                //display high scores
-                vw.displayCurrentPlayerStats();
+                //display current player scores
+                vw.displayCurrentPlayerStats(ml.getCurrentActivePlayer());
                 endMenu();
             }
             case "4" -> {
+                //display all players scores
+                vw.displayAllPlayersScores(ml.getAllPlayers());
+                endMenu();
+            }
+            case "5" -> {
                 //end game
                 vw.viewEnding();
             }

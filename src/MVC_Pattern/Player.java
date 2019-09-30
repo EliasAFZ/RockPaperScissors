@@ -20,20 +20,15 @@ public class Player {
     Player(String playerName) {
         this.playerName = playerName;
         numOfTotalMatches = 0;
-        playerHighScore = 0;
         winRate = 0;
-        numOfLosses = 0;
         numOfWins = 0;
+        numOfLosses = 0;
         numOfTies = 0;
 
     }
 
     public String getPlayerName() {
         return playerName;
-    }
-
-    public int getPlayerHighScore() {
-        return playerHighScore;
     }
 
     public int getTotalMatches() {
@@ -56,13 +51,10 @@ public class Player {
         return numOfTies;
     }
 
-    public void setPlayerHighScore(int playerHighScore) {
-        this.playerHighScore = playerHighScore;
-    }
-
-    public void setWinRate(float winRate) {
-        //TODO: BUG divide by zero error
-        this.winRate = numOfTotalMatches / numOfLosses;
+    public void setWinRate() {
+        if(numOfWins != 0 && numOfTotalMatches != 0) {
+            winRate = (float)numOfTotalMatches / (float)numOfWins;
+        }
     }
 
     public void incrementTotalMatches() {

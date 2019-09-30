@@ -89,18 +89,31 @@ public class View {
     }
 
 
-    public void displayCurrentPlayerStats() {
-        System.out.println("stats are bla bla");
+    public void displayCurrentPlayerStats(Player player) {
+        lineSeparator();
+        System.out.println("Player: " + player.getPlayerName());
+        System.out.println("Total Matches: " + player.getTotalMatches());
+        System.out.println("Win Rate: " + player.getWinRate());
+        System.out.println("Total Wins: " + player.getNumOfWins());
+        System.out.println("Total Losses: " + player.getNumOfLosses());
+        System.out.println("Total Ties: " + player.getNumOfTies());
+        lineSeparator();
     }
 
+    public void displayAllPlayersScores(Player[] playerArr){
+        for(Player currentSelectedPlayer : playerArr){
+            displayCurrentPlayerStats(currentSelectedPlayer);
+        }
+    }
 
     public String endDisplayMenu() {
         lineSeparator();
         System.out.println("END MENU: Enter the correlating number to your choice");
-        System.out.println("1: keep playing?");
-        System.out.println("2: Switch players?");
-        System.out.println("3: Display scores?");
-        System.out.println("4: Exit Game");
+        System.out.println("1: Keep playing with the same player?");
+        System.out.println("2: Switch to a new player?");
+        System.out.println("3: Display current players scores?");
+        System.out.println("4: Display all stored players scores?");
+        System.out.println("5: Exit Game");
         System.out.print("Enter option: ");
         return inputScanner.nextLine();
     }
@@ -127,7 +140,7 @@ public class View {
     }
 
 
-    public void lineSeparator() {
+    private void lineSeparator() {
         System.out.println("-------------------------------------------------------------------------------");
     }
 }
