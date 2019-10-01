@@ -17,16 +17,16 @@ public class Controller {
         this.ml = ml;
     }
 
-    //enum testing for type safety
+    //testing enum for type safety
     public enum Condition {
-        names, winsagainst, losesagainst
+        pieceNames, winsAgainst, losesAgainst, allSetArraysGamePieces
     }
 
 
     public void runStart() {
         String playerResponse = vw.startGameQuestion();
         // Switch expression new in java 12
-        switch (playerResponse.toLowerCase()) {
+        switch (playerResponse) {
             case "yes" -> {
                 createPlayer();
                 gameLoop();
@@ -42,12 +42,27 @@ public class Controller {
 
     private void createPlayer() {
         String playerName = vw.retrievePlayerName();
-        if (!ml.containsNameOrIsBlank(playerName)) {
+        if (!ml.containsName(playerName) && !playerName.isBlank()) {
             ml.createPlayer(playerName);
             ml.setCurrentActivePlayer(playerName);
+        } else if (ml.containsName(playerName)) {
+            playerAlreadyExistsCheck(vw.playerAlreadyExists(playerName), playerName);
         } else {
-            vw.incorrectPlayerName();
+            vw.emptyPlayerName();
             createPlayer();
+        }
+    }
+
+    private void playerAlreadyExistsCheck(String playerResponse, String playerName) {
+        switch (playerResponse) {
+            case "yes" -> {
+                ml.setCurrentActivePlayer(playerName);
+            }
+            case "no" -> endMenu();
+            default -> {
+                vw.incorrectPlayerResponse(playerResponse);
+                createPlayer();
+            }
         }
     }
 
@@ -55,26 +70,38 @@ public class Controller {
     private void gameLoop() {
         gameCurrentRules();
         gameRoundCheck();
-        //switch set method here
         ml.updatePlayerStats();
+        checkToSwitchSets();
         endMenu();
     }
 
+    private void checkToSwitchSets() {
+        String playerChoice;
+        String matchResults = ml.getMatchResults();
 
+        if (matchResults.equalsIgnoreCase("Player one Wins!")) {
+            playerChoice = vw.displayAllGameSets(ml.toStringListGamePieces(Condition.allSetArraysGamePieces));
+            ml.switchGamePieceSet(playerChoice);
+            }
+        }
+
+    //TODO: messy code needs more variables for readability, less functional style.
     private void gameCurrentRules() {
-        vw.displayGameStatus(ml.numOfGamePieces(), ml.toStringListGamePieces(Condition.names));
-        vw.displayRules(ml.toStringListGamePieces(Condition.names),
-                ml.toStringListGamePieces(Condition.winsagainst),
-                ml.toStringListGamePieces(Condition.losesagainst));
+        vw.displayGameStatus(ml.numOfGamePieces(), ml.toStringListGamePieces(Condition.pieceNames));
+        vw.displayRules(ml.toStringListGamePieces(Condition.pieceNames),
+                ml.toStringListGamePieces(Condition.winsAgainst),
+                ml.toStringListGamePieces(Condition.losesAgainst));
     }
 
     //TODO: messy code needs more variables for readability, less functional style.
     private void gameRoundCheck() {
         String p1SelectedPiece = vw.getPlayerPieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
+        String matchResults;
+
         if (ml.containsPiece(p1SelectedPiece)) {
-            vw.displayPlayerChoices(ml.getCurrentActivePlayer().getPlayerName(),p1SelectedPiece, p2SelectedPiece);
-            String matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
+            vw.displayPlayerChoices(ml.getCurrentActivePlayer().getPlayerName(), p1SelectedPiece, p2SelectedPiece);
+            matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
             vw.viewDisplayMatchResults(matchResults);
         } else {
             vw.incorrectPlayerResponse(p1SelectedPiece);

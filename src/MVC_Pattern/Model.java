@@ -24,6 +24,12 @@ public class Model {
     final private GamePiece air = new GamePiece("air", "water", "fire");
     final private GamePiece[] gamePieceSet2 = new GamePiece[]{fire, water, air};
 
+    final private GamePiece spock = new GamePiece("spock", "wizard", "lizard");
+    final private GamePiece lizard = new GamePiece("lizard", "spock", "wizard");
+    final private GamePiece wizard = new GamePiece("wizard", "lizard", "spock");
+    final private GamePiece[] gamePieceSet3 = new GamePiece[]{spock, lizard, wizard};
+
+    private GamePiece[][] allAvailableSets = {gamePieceSet1, gamePieceSet2, gamePieceSet3};
     private ArrayList<GamePiece> activeGamePieceSet = new ArrayList<>();
     private HashMap<String, Player> playerMap = new HashMap<>();
     private Player currentActivePlayer;
@@ -31,29 +37,30 @@ public class Model {
 
     Model() {
         createPlayer("Cpu");
-        loadGamePieceSet();
+        clearCurrentAndLoadGamePieceSet(gamePieceSet1);
     }
 
     public void createPlayer(String playerName) {
-            Player player = new Player(playerName);
-            playerMap.put(playerName, player);
+        Player player = new Player(playerName);
+        playerMap.put(playerName, player);
     }
 
-    public boolean containsNameOrIsBlank(String playerName){
-        return (playerMap.containsKey(playerName) || playerName.isBlank());
+    public boolean containsName(String playerName) {
+        return (playerMap.containsKey(playerName));
     }
 
     public void setCurrentActivePlayer(String playerName) {
         currentActivePlayer = playerMap.get(playerName);
     }
 
-    public void loadGamePieceSet() {
-        // if current arr list is empty load the default set which is set 1
-        if (activeGamePieceSet.isEmpty()) {
-            for(GamePiece gp : gamePieceSet1) {
+    public void clearCurrentAndLoadGamePieceSet(GamePiece[] gamePieceToLoad) {
+        // if current arr list is not empty clear it first then load in an array
+        if (!activeGamePieceSet.isEmpty()) {
+            activeGamePieceSet.clear();
+        }
+            for (GamePiece gp : gamePieceToLoad) {
                 activeGamePieceSet.add(gp);
             }
-        }
     }
 
 
@@ -91,7 +98,6 @@ public class Model {
         if (matchResult.equalsIgnoreCase("Player one Wins!")) {
             currentActivePlayer.incrementWinStat();
             cpu.incrementLoseStat();
-            switchGamePieceSet();
         } else if (matchResult.equalsIgnoreCase("Player two Wins!")) {
             cpu.incrementWinStat();
             currentActivePlayer.incrementLoseStat();
@@ -103,8 +109,12 @@ public class Model {
         cpu.setWinRate();
     }
 
-    public void switchGamePieceSet() {
-
+    public void switchGamePieceSet(String playerChoice) {
+        switch (playerChoice) {
+            case "gamepieceset1" -> clearCurrentAndLoadGamePieceSet(gamePieceSet1);
+            case "gamepieceset2" -> clearCurrentAndLoadGamePieceSet(gamePieceSet2);
+            case "gamepieceset3" -> clearCurrentAndLoadGamePieceSet(gamePieceSet3);
+        }
     }
 
     public boolean containsPiece(String playerSelectedPiece) {
@@ -116,7 +126,7 @@ public class Model {
         return false;
     }
 
-    public Player getCurrentActivePlayer(){
+    public Player getCurrentActivePlayer() {
         return currentActivePlayer;
     }
 
@@ -133,29 +143,41 @@ public class Model {
     public String toStringListGamePieces(Controller.Condition condition) {
         StringBuilder listOfPieces = new StringBuilder();
         switch (condition) {
-            case names -> {
+            case pieceNames -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces.append(currentPiece.getPieceName() + " ");
                 }
             }
-            case winsagainst -> {
+            case winsAgainst -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces.append(currentPiece.getWinsAgainst() + " ");
                 }
             }
-            case losesagainst -> {
+            case losesAgainst -> {
                 for (GamePiece currentPiece : activeGamePieceSet) {
                     listOfPieces.append(currentPiece.getLosesTo() + " ");
+                }
+            }
+            case allSetArraysGamePieces ->{
+                for(GamePiece[] currentSetPieceArr : allAvailableSets){
+                    listOfPieces.append(currentSetPieceArr.toString() + ": ");
+                    for(GamePiece currentPiece : currentSetPieceArr){
+                        listOfPieces.append(currentPiece.getPieceName() + " ");
+                    }
+                    listOfPieces.append("\n");
                 }
             }
         }
         return listOfPieces.toString();
     }
 
-    public Player[] getAllPlayers(){
+    public Player[] getAllPlayers() {
         Player[] playerArr = new Player[playerMap.size()];
         playerMap.values().toArray(playerArr);
         return playerArr;
     }
 
+    public String getMatchResults() {
+        return matchResult;
+    }
 }

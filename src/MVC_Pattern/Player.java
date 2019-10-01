@@ -10,7 +10,6 @@ package MVC_Pattern;
 public class Player {
 
     private String playerName;
-    private int playerHighScore;
     private float winRate;
     private int numOfWins;
     private int numOfLosses;
