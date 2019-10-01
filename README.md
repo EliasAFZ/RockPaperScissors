@@ -20,7 +20,7 @@ It really just depends on what you need to solve.
 - **Observable Pattern:** Object everyone observes, then objects that watch it change (Button in java with actionlsitener).
 - **Unidrectional Data Flow:** Data Flows in one direction (Meant to keep things clean and simple in Mobile/Web).
 - **Model View Controller:** Model is the object, View is just to display, and Controller receives input and controls flow.
-- **Model View Presenter:** Similar to MVC but user goes through the view and presenter is in between the Model and View.
+- **Model View Presenter:** Similar to MVC but user goes through the view, presenter is between the Model and View.
 - **Model View ViewModel:** Mix between Observer Pattern and MVP uses two way data binding ensures sync.
 - For more details please follow the links down below.
 
