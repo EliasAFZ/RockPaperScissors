@@ -130,13 +130,13 @@ public class Model {
         return currentActivePlayer;
     }
 
-    //TODO: returning null is bad possible other solution?
     public GamePiece toGamePiece(String gamePieceName) {
         for (GamePiece currentPiece : activeGamePieceSet) {
             if (currentPiece.getPieceName().equalsIgnoreCase(gamePieceName)) {
                 return currentPiece;
             }
         }
+        // returning null is normally bad however this allows me to catch that a piece wasn't assigned
         return null;
     }
 
@@ -159,12 +159,14 @@ public class Model {
                 }
             }
             case allSetArraysGamePieces ->{
+                int currentSetNum = 1;
                 for(GamePiece[] currentSetPieceArr : allAvailableSets){
-                    listOfPieces.append(currentSetPieceArr.toString() + ": ");
+                    listOfPieces.append("GamePieceSet" + currentSetNum + ": ");
                     for(GamePiece currentPiece : currentSetPieceArr){
                         listOfPieces.append(currentPiece.getPieceName() + " ");
                     }
                     listOfPieces.append("\n");
+                    currentSetNum++;
                 }
             }
         }
