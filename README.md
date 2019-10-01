@@ -8,7 +8,7 @@ came to MVC and realized that it was best suited for my code scenario. I knew ce
 certain languages but this project made me realize to what extent that really meant. It really just depends on what you need to solve.
 
 # System Design Scenario Examples 
-- **State Pattern:**An example would be A traffic light as it has different but concrete states (green, yellow, red, etc).
+- **State Pattern:** An example would be A traffic light as it has different but concrete states (green, yellow, red, etc).
 - **Observable Pattern:** would be a user subscribing to a service the observable pattern allows all 
 - **Unidrectional Data Flow:** geared torwards Mobile/Web
 - **Model View Controller:** geared torwards Mobile/Web
@@ -21,3 +21,12 @@ you may switch to a new set of game pieces each time you win! So for example let
 can switch them out for fire, water, and air if you win at the end of the round. The game creates a player at the start then plays out a 
 round with the default set. You can create a new player or play with the one your already using. If you try to create a player that 
 already exists you can switch to that player. All players have scores that you can look at the end to see who's winning!
+
+# Research Materials
+[(http://www.newthinktank.com/2013/02/mvc-java-tutorial/)]
+[]
+[]
+[]
+[]
+
+#Pictures
