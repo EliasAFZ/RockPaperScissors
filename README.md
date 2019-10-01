@@ -33,4 +33,6 @@ It really just depends on what you need to solve.
 - [Observable Design Pattern](https://www.vogella.com/tutorials/DesignPatternObserver/article.html)
 
 # Pictures
-
+![Screenshot1](https://github.com/EliasAFZ/RockPaperScissors/blob/master/Screenshots/Screenshot%20(99).png)
+![Screenshot2](https://github.com/EliasAFZ/RockPaperScissors/blob/master/Screenshots/Screenshot%20(101).png)
+![Screenshot3](https://github.com/EliasAFZ/RockPaperScissors/blob/master/Screenshots/Screenshot%20(100).png)
