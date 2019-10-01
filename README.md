@@ -7,9 +7,9 @@ Unidrectional Data Flow (UDF) patterns and researched a few more like Model View
 came to MVC and realized that it was best suited for my code scenario. I knew certain patterns would play better with others and 
 certain languages but this project made me realize to what extent that really meant. It really just depends on what you need to solve.
 
-# System Design Scenario Examples 
-- **State Pattern:** An example would be A traffic light as it has different but concrete states (green, yellow, red, etc).
-- **Observable Pattern:** would be a user subscribing to a service the observable pattern allows all 
+# System Design Examples
+- **State Pattern:** Object that alters its behavior when its state changes (Vending machine, Traffic Light, mobile alerts).
+- **Observable Pattern:** Object everyone observes and then objects that watch it change (Button in java with actionlsitener).
 - **Unidrectional Data Flow:** geared torwards Mobile/Web
 - **Model View Controller:** geared torwards Mobile/Web
 - **Model View Presenter:** geared torwards Mobile/Web
@@ -27,5 +27,9 @@ already exists you can switch to that player. All players have scores that you c
 - [Model View Controller Guide 2](https://www.tutorialspoint.com/design_pattern/mvc_pattern.htm)
 - [MVC/MVP/MVVM](https://medium.com/@ankit.sinhal/mvc-mvp-and-mvvm-design-pattern-6e169567bbad)
 - [Unidrection Data Flow (UDF)](https://www.exclamationlabs.com/blog/the-case-for-unidirectional-data-flow/)
+- [State Design Pattern)](https://www.geeksforgeeks.org/state-design-pattern/)
+- [Observable Design Pattern)](https://www.vogella.com/tutorials/DesignPatternObserver/article.html)
 
-#Pictures
+
+# Pictures
+
