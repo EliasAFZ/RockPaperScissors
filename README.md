@@ -1,4 +1,4 @@
-# Dynamic Rock/Paper/Scissors
+# Dynamic Rock/Paper/Scissors Game
 
 # Purpose
 This game was made to explore some features of Java 12 and things such as Switch expressions, Recursion, Enums, Arrays, Arraylists, 
