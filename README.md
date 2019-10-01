@@ -23,10 +23,9 @@ round with the default set. You can create a new player or play with the one you
 already exists you can switch to that player. All players have scores that you can look at the end to see who's winning!
 
 # Research Materials
-[(http://www.newthinktank.com/2013/02/mvc-java-tutorial/)]
-[]
-[]
-[]
-[]
+- [Model View Controller Guide 1](http://www.newthinktank.com/2013/02/mvc-java-tutorial/)
+- [Model View Controller Guide 2](https://www.tutorialspoint.com/design_pattern/mvc_pattern.htm)
+- [MVC/MVP/MVVM](https://medium.com/@ankit.sinhal/mvc-mvp-and-mvvm-design-pattern-6e169567bbad)
+- [Unidrection Data Flow (UDF)](https://www.exclamationlabs.com/blog/the-case-for-unidirectional-data-flow/)
 
 #Pictures
