@@ -8,9 +8,9 @@ came to MVC and realized that it was best suited for my code scenario. I knew ce
 certain languages but this project made me realize to what extent that really meant. It really just depends on what you need to solve.
 
 # System Design Examples
-- **State Pattern:** Object that alters its behavior when its state changes (Vending machine, Traffic Light, mobile alerts).
-- **Observable Pattern:** Object everyone observes and then objects that watch it change (Button in java with actionlsitener).
-- **Unidrectional Data Flow:** geared torwards Mobile/Web
+- **State Pattern:** Object that alters its behavior when its state changes (Vending machine, inventroy and currency change).
+- **Observable Pattern:** Object everyone observes, then objects that watch it change (Button in java with actionlsitener).
+- **Unidrectional Data Flow:** 
 - **Model View Controller:** geared torwards Mobile/Web
 - **Model View Presenter:** geared torwards Mobile/Web
 - **Model View ViewModel:** geared torwards Mobile/Web
