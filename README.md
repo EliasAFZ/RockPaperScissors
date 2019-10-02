@@ -8,12 +8,8 @@ round with the default set. You can create a new player or play with the one you
 already exists you can switch to that player. All players have scores that you can look at the end to see who's winning!
 
 # Purpose
-This game was made to explore some features of Java 12 and things such as Switch expressions, Recursion, Enums, Arrays, Arraylists, 
-Hashmaps, and System design. Coding with system design in mind was interesting. I played around with Observable, State, MVC, and 
-somewhat Unidrectional Data Flow (UDF) patterns and researched a few more like Model View Presenter (MVP) and Model View ViewModel 
-(MVVM). Then came to MVC but kept the data flow of MVP and realized that it was best suited for my code scenario. I knew certain 
-patterns would play better with others and certain languages but this project made me realize to what extent that really meant. 
-It really just depends on what you need to solve.
+This game was made to explore some features of Java 12, Git VCS, and other Java Features such as Switch expressions, Recursion, Enums, Arrays, Arraylists, Hashmaps, and System design. Coding with system design in mind was interesting. I played around with Observable, State, MVC, and somewhat Unidrectional Data Flow (UDF) patterns and researched a few more like Model View Presenter (MVP) and Model View ViewModel (MVVM). Then came to MVC but kept the data flow of MVP and realized that it benefit me the most as im getting into android development. I knew certain patterns would play better with others and certain languages but this project made me realize to what 
+extent that really meant. It really just depends on what you need to solve.
 
 # System Design Examples/Briefly Explained
 - **State Pattern:** Object that alters its behavior when state changes (Vending machine inventory and currency change).
