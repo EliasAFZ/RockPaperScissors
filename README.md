@@ -13,11 +13,11 @@ extent that really meant. It really just depends on what you need to solve.
 
 # System Design Examples/Briefly Explained
 - **State Pattern:** Object that alters its behavior when state changes (Vending machine inventory and currency change).
-- **Observable Pattern:** Object everyone observes, then objects that watch it change (Button in java with actionlsitener).
+- **Observable Pattern:** Object everyone observes, then objects that watch it change (Button in java with actionlistener).
 - **Unidrectional Data Flow:** Data Flows in one direction (Meant to keep things clean and simple in Mobile/Web).
 - **Model View Controller:** Model is the object, View is just to display, and Controller receives input and controls flow.
 - **Model View Presenter:** Similar to MVC but user goes through the view, presenter is between the Model and View.
-- **Model View ViewModel:** Mix between Observer Pattern and MVP uses two way data binding ensures sync.
+- **Model View ViewModel:** Mix between Observer Pattern and MVP uses two way data binding to ensure sync.
 - For more details please follow the links down below.
 
 # Research Materials
