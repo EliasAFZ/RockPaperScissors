@@ -3,7 +3,7 @@ package MVC_Pattern;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: Object class meant to represent a "Game Piece".
  *
  * @Author Elias Afzalzada
  */

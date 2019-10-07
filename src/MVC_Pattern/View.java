@@ -5,7 +5,8 @@ import java.util.Scanner;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: View class anything/everything with displaying to the end user is done here.
+ * This class was kept as "dumb" as possible.
  *
  * @Author Elias Afzalzada
  */
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class View {
 
     private Scanner inputScanner = new Scanner(System.in);
+
 
     View() {
         welcomeDisplay();
@@ -99,17 +101,17 @@ public class View {
         lineSeparator();
         System.out.println("Player: " + player.getPlayerName());
         System.out.println("Total Matches: " + player.getTotalMatches());
-        System.out.print("Win Rate: " );
-        System.out.printf("%.2f",  player.getWinRate());
-        System.out.println( "%");
+        System.out.print("Win Rate: ");
+        System.out.printf("%.2f", player.getWinRate());
+        System.out.println("%");
         System.out.println("Total Wins: " + player.getNumOfWins());
         System.out.println("Total Losses: " + player.getNumOfLosses());
         System.out.println("Total Ties: " + player.getNumOfTies());
         lineSeparator();
     }
 
-    public void displayAllPlayersScores(Player[] playerArr){
-        for(Player currentSelectedPlayer : playerArr){
+    public void displayAllPlayersScores(Player[] playerArr) {
+        for (Player currentSelectedPlayer : playerArr) {
             displayCurrentPlayerStats(currentSelectedPlayer);
         }
     }
@@ -136,7 +138,8 @@ public class View {
         System.out.println("You entered an emtpy name please enter another name.");
     }
 
-    public String playerAlreadyExists(String playerName){
+
+    public String playerAlreadyExists(String playerName) {
         lineSeparator();
         System.out.print(playerName + " already exists would you like to switch to that player? (Yes/No): ");
         return inputScanner.nextLine().toLowerCase();

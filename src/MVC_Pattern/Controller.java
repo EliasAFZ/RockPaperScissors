@@ -3,7 +3,9 @@ package MVC_Pattern;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: Handles Data flow between Model and View. Conditions were checked to determine
+ * next direction in program. Controller business logic was kept as minimal as possible.
+ * Began following MVC but ended up with more of an MVP or MVVM data flow and kept with it.
  *
  * @Author Elias Afzalzada
  */
@@ -29,7 +31,7 @@ public class Controller {
         switch (playerResponse) {
             case "yes" -> {
                 createPlayer();
-                gameLoop();
+                gameRound();
             }
             case "no" -> vw.viewJustLooking();
             default -> {
@@ -55,9 +57,7 @@ public class Controller {
 
     private void playerAlreadyExistsCheck(String playerResponse, String playerName) {
         switch (playerResponse) {
-            case "yes" -> {
-                ml.setCurrentActivePlayer(playerName);
-            }
+            case "yes" -> ml.setCurrentActivePlayer(playerName);
             case "no" -> endMenu();
             default -> {
                 vw.incorrectPlayerResponse(playerResponse);
@@ -67,7 +67,7 @@ public class Controller {
     }
 
 
-    private void gameLoop() {
+    private void gameRound() {
         gameCurrentRules();
         gameRoundCheck();
         ml.updatePlayerStats();
@@ -75,32 +75,38 @@ public class Controller {
         endMenu();
     }
 
+
     private void checkToSwitchSets() {
         String playerChoice;
         String matchResults = ml.getMatchResults();
+        String allAvailableGamePieces = ml.getCurrentActivePlayer().getPlayerName();
 
         if (matchResults.equalsIgnoreCase("Player one Wins!")) {
-            playerChoice = vw.displayAllGameSets(ml.toStringListGamePieces(Condition.allSetArraysGamePieces));
+            playerChoice = vw.displayAllGameSets(allAvailableGamePieces);
             ml.switchGamePieceSet(playerChoice);
-            }
         }
-
-    //TODO: messy code needs more variables for readability, less functional style.
-    private void gameCurrentRules() {
-        vw.displayGameStatus(ml.numOfGamePieces(), ml.toStringListGamePieces(Condition.pieceNames));
-        vw.displayRules(ml.toStringListGamePieces(Condition.pieceNames),
-                ml.toStringListGamePieces(Condition.winsAgainst),
-                ml.toStringListGamePieces(Condition.losesAgainst));
     }
 
-    //TODO: messy code needs more variables for readability, less functional style.
+
+    private void gameCurrentRules() {
+        int currentNumOfGamePieces = ml.numOfGamePieces();
+        String currentGamePiecesInPlay = ml.toStringListGamePieces(Condition.pieceNames);
+        String gamePiecesWinsAgainst = ml.toStringListGamePieces(Condition.winsAgainst);
+        String gamePieceLosesAgainst = ml.toStringListGamePieces(Condition.losesAgainst);
+
+        vw.displayGameStatus(currentNumOfGamePieces, currentGamePiecesInPlay);
+        vw.displayRules(currentGamePiecesInPlay, gamePiecesWinsAgainst, gamePieceLosesAgainst);
+    }
+
+
     private void gameRoundCheck() {
+        String currentActivePlayerName = ml.getCurrentActivePlayer().getPlayerName();
         String p1SelectedPiece = vw.getPlayerPieceChoice();
         String p2SelectedPiece = ml.getCpuPieceChoice();
         String matchResults;
 
         if (ml.containsPiece(p1SelectedPiece)) {
-            vw.displayPlayerChoices(ml.getCurrentActivePlayer().getPlayerName(), p1SelectedPiece, p2SelectedPiece);
+            vw.displayPlayerChoices(currentActivePlayerName, p1SelectedPiece, p2SelectedPiece);
             matchResults = ml.retrieveMatchResults(p1SelectedPiece, p2SelectedPiece);
             vw.viewDisplayMatchResults(matchResults);
         } else {
@@ -109,12 +115,13 @@ public class Controller {
         }
     }
 
+
     private void endMenu() {
         String endChoice = vw.endDisplayMenu().toLowerCase();
         switch (endChoice) {
             case "1" -> {
                 //play again
-                gameLoop();
+                gameRound();
             }
             case "2" -> {
                 //switch to new player

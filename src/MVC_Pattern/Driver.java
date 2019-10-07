@@ -1,10 +1,9 @@
 package MVC_Pattern;
 
-
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: Creates handles for view/model and passed them onto controller then starts.
  *
  * @Author Elias Afzalzada
  */

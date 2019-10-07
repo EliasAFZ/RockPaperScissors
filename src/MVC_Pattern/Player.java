@@ -3,7 +3,7 @@ package MVC_Pattern;
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: Object class to represent a Player.
  *
  * @Author Elias Afzalzada
  */
@@ -51,8 +51,8 @@ public class Player {
     }
 
     public void setWinRate() {
-        if(numOfWins != 0 && numOfTotalMatches != 0) {
-            winRate = (float)numOfTotalMatches / (float)numOfWins;
+        if (numOfWins != 0 && numOfTotalMatches != 0) {
+            winRate = (float) numOfTotalMatches / (float) numOfWins;
         }
     }
 

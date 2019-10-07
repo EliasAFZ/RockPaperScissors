@@ -1,13 +1,15 @@
 package MVC_Pattern;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 /**
  * Project Name: RockPaperScissorsGame
  * Date: 9/20/2019
- * Description:
+ * Description: Model class which represented our game in this case.
+ * Any or all business logic along with game state was kept/done here.
  *
  * @Author Elias Afzalzada
  */
@@ -35,6 +37,7 @@ public class Model {
     private Player currentActivePlayer;
     private String matchResult;
 
+
     Model() {
         createPlayer("Cpu");
         clearCurrentAndLoadGamePieceSet(gamePieceSet1);
@@ -58,9 +61,7 @@ public class Model {
         if (!activeGamePieceSet.isEmpty()) {
             activeGamePieceSet.clear();
         }
-            for (GamePiece gp : gamePieceToLoad) {
-                activeGamePieceSet.add(gp);
-            }
+        activeGamePieceSet.addAll(Arrays.asList(gamePieceToLoad));
     }
 
 
@@ -158,11 +159,11 @@ public class Model {
                     listOfPieces.append(currentPiece.getLosesTo() + " ");
                 }
             }
-            case allSetArraysGamePieces ->{
+            case allSetArraysGamePieces -> {
                 int currentSetNum = 1;
-                for(GamePiece[] currentSetPieceArr : allAvailableSets){
+                for (GamePiece[] currentSetPieceArr : allAvailableSets) {
                     listOfPieces.append("GamePieceSet" + currentSetNum + ": ");
-                    for(GamePiece currentPiece : currentSetPieceArr){
+                    for (GamePiece currentPiece : currentSetPieceArr) {
                         listOfPieces.append(currentPiece.getPieceName() + " ");
                     }
                     listOfPieces.append("\n");
