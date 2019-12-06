@@ -1,6 +1,4 @@
 # Dynamic Rock/Paper/Scissors Game
-
-# Description Of Game
 This game is based on the original rules that rock beats scissor, paper beats rock, scissors beats paper, etc. However in this version
 you may switch to a new set of game pieces each time you win! So for example lets say currently rock, paper, and scissors are in play. You 
 can switch them out for fire, water, and air if you win at the end of the round. The game creates a player at the start then plays out a 
